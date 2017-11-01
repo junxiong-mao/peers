@@ -15,19 +15,19 @@
           <h2>Level</h2>
         </ion-row>
         <ion-row>
-          <p>PhD</p>
+          {{currentCard.level}}
         </ion-row>
         <ion-row>
           <h2>Major</h2>
         </ion-row>
         <ion-row>
-          Computer Science
+          {{currentCard.major}}
         </ion-row>
         <ion-row>
           <h2>Interests</h2>
         </ion-row>
-        <ion-row>
-          Lala, Tadaa, dinges
+        <ion-row *ngFor="let interest of currentCard.interests">
+          {{interest}}
         </ion-row>
       </ion-card-content>
     </ion-card>
