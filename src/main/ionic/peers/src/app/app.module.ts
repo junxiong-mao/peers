@@ -10,7 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { CardsService } from "../services/cards-service";
-import { CardsState } from "../state/cards-state";
+import { CardsState } from "../states/cards-state";
 
 @NgModule({
   declarations: [
