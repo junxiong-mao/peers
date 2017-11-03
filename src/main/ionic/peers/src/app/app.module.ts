@@ -14,6 +14,8 @@ import { CardsState } from "../states/cards-state";
 
 import { ComponentsModule } from "../components/components.module";
 
+import { EmailComposer } from '@ionic-native/email-composer';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,6 +39,7 @@ import { ComponentsModule } from "../components/components.module";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CardsState,
     CardsService,
+    EmailComposer,
   ]
 })
 export class AppModule {

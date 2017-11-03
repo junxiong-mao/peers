@@ -4,6 +4,7 @@ import { CardsState } from "../../states/cards-state";
 import { Subscription } from "rxjs/Subscription";
 import { Card } from "../../models/card";
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -23,5 +24,11 @@ export class HomePage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.cardsSubscription.unsubscribe();
+  }
+  likeBtnClick() {
+    this.cardsState.likeCurrenCard();
+  }
+  passBtnClick() {
+    this.cardsState.rejectCurrenCard();
   }
 }
