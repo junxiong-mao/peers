@@ -12,7 +12,8 @@ export class CardsService {
         'Machine Learning',
         'Bumblebees',
         'Biology'
-      ]
+      ],
+      bio: 'I like Machine Learning because it\'s cool'
     },
     {
       level: 'MS',
@@ -20,7 +21,8 @@ export class CardsService {
       interests: [
         'Biology',
         'Newton'
-      ]
+      ],
+      bio: 'I like bio because it\'s cool'
     },
     {
       level: 'MS',
@@ -28,7 +30,8 @@ export class CardsService {
       interests: [
         'Processors',
         'Digital Signal Processing'
-      ]
+      ],
+      bio: 'I like Digital Signal Processing because it\'s cool'
     }
   ];
 
