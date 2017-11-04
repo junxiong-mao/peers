@@ -9,28 +9,47 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-card>
-      <ion-card-content>
-        <ion-row>
-          <h2>Level</h2>
-        </ion-row>
-        <ion-row>
-          {{currentCard.level}}
-        </ion-row>
-        <ion-row>
-          <h2>Major</h2>
-        </ion-row>
-        <ion-row>
-          {{currentCard.major}}
-        </ion-row>
-        <ion-row>
-          <h2>Interests</h2>
-        </ion-row>
-        <ion-row *ngFor="let interest of currentCard.interests">
-          {{interest}}
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
+    <ion-row>
+      <ion-col class="dinges">
+        <div class="flip-container">
+          <div class="flipper">
+            <ion-card class="front">
+              <ion-card-content>
+                <ion-row>
+                  <h2>Level</h2>
+                </ion-row>
+                <ion-row>
+                  {{currentCard.level}}
+                </ion-row>
+                <ion-row>
+                  <h2>Major</h2>
+                </ion-row>
+                <ion-row>
+                  {{currentCard.major}}
+                </ion-row>
+                <ion-row>
+                  <h2>Interests</h2>
+                </ion-row>
+                <ion-row *ngFor="let interest of currentCard.interests">
+                  {{interest}}
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+            <ion-card class="back">
+              <ion-card-content>
+                <h3>BACK</h3>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
     <ion-row class="buttons">
       <ion-col col-6 col-sm-3>
         <button ion-button color="danger">Pass</button>
@@ -39,6 +58,5 @@
         <button ion-button color="secondary">Like</button>
       </ion-col>
     </ion-row>
-  </ion-grid>
-
-</ion-content>
+  </ion-toolbar>
+</ion-footer>
