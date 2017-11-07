@@ -12,21 +12,24 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CardsService } from "../services/cards-service";
 import { CardsState } from "../states/cards-state";
 
+import { ComponentsModule } from "../components/components.module";
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
   ],
   imports: [
     BrowserModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
   ],
   providers: [
     StatusBar,
