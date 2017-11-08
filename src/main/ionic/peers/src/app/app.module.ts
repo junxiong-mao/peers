@@ -9,6 +9,7 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { UserService } from "../services/user-service";
 import { CardsService } from "../services/cards-service";
 import { CardsState } from "../states/cards-state";
 
@@ -35,6 +36,7 @@ import { ComponentsModule } from "../components/components.module";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserService,
     CardsState,
     CardsService,
   ]

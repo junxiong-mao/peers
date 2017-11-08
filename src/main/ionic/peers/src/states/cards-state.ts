@@ -10,12 +10,16 @@ export class CardsState {
   private cardIndex = 0;
   private currentCardSubject: BehaviorSubject<Card>;
   public readonly currentCard: Observable<Card>;
+  private isMatchSubject: BehaviorSubject<boolean>;
+  public readonly isMatch: Observable<boolean>;
 
   //todo: add isFlipped card state
 
   constructor(private cardsService: CardsService) {
-    this.currentCardSubject = new BehaviorSubject(new Card(null, null, [], null));
+    this.currentCardSubject = new BehaviorSubject(new Card(null, null, null, [], null));
     this.currentCard = this.currentCardSubject.asObservable();
+    this.isMatchSubject = new BehaviorSubject(false);
+    this.isMatch = this.isMatchSubject.asObservable();
   }
 
   public initialize() {
@@ -23,11 +27,13 @@ export class CardsState {
       this.cards = cards;
       this.cardIndex = 0;
       this.currentCardSubject.next(cards[this.cardIndex]);
+      this.isMatchSubject.next(false);
     });
   }
 
-  private nextCard() {
+  public nextCard() {
     this.cardIndex++;
+    this.isMatchSubject.next(false);
     if (this.cardIndex >= this.cards.length) {
       this.initialize();
     } else {
@@ -36,12 +42,13 @@ export class CardsState {
   }
 
   public likeCurrenCard() {
-    this.nextCard();
+    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'REJECT').subscribe(
+      isMatch => this.isMatchSubject.next(isMatch)
+    );
   }
 
   public rejectCurrenCard() {
+    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'LIKE');
     this.nextCard();
   }
-
-
 }

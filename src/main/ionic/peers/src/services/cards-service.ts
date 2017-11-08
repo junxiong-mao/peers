@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
+import { Card } from "../models/card";
 
 @Injectable()
 export class CardsService {
@@ -35,7 +36,11 @@ export class CardsService {
     }
   ];
 
-  public getCards(): Observable<any> {
+  public getCards(): Observable<Array<Card>> {
     return Observable.of(this.cards);
+  }
+
+  public postDecision(id: string, decisionType: string): Observable<boolean> {
+    return Observable.of(true);
   }
 }
