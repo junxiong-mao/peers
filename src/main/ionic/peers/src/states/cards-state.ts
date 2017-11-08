@@ -48,14 +48,13 @@ export class CardsState {
       message: 'Junxiong Mao: Graduate student at UCSD<br/>Interests: CS, AI, ML<br/>Email: jum029@eng.ucsd.edu',
       buttons: [
           {
-            text: 'Cancel',
-            role: 'cancel',
+            text: 'OK',
             handler: () => {
               console.log('Cancel clicked');
             }
           },
           {
-            text: 'Email',
+            text: 'Send Email',
             handler: () => {
               console.log('Email clicked');
             }
