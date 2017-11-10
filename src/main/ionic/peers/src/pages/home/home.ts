@@ -45,6 +45,11 @@ export class HomePage implements OnInit, OnDestroy {
       this.userService.getUser(this.currentCard.id).then(
         response => {
           let user = response.data;
+          if(!user) {
+            console.warn('user was null');
+            this.cardsState.nextCard();
+            return;
+          }
           let alert = this.alertCtrl.create({
             title: 'You have a match!',
             message: `
