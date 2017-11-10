@@ -68,7 +68,7 @@ export class HomePage implements OnInit, OnDestroy {
                 text: 'Send Email',
                 handler: () => {
                   console.log('Email clicked');
-                  window.location.href = `mailto:${user.email}?subject=We%20were%20matched!&body=Hi%20${user.firstName},`;
+                  window.location.href = `mailto:${user.email}?subject=We%20got%20Peered!&body=Hi%20${user.firstName},`;
                   this.cardsState.nextCard();
                 }
               }

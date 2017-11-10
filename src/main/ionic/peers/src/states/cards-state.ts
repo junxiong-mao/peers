@@ -23,10 +23,11 @@ export class CardsState {
   }
 
   public initialize() {
-    this.cardsService.getCards().subscribe(cards => {
-      this.cards = cards;
+    // this.cardsService.getCards().subscribe(cards => {
+    this.cardsService.getCards().then(response => {
+      this.cards = response.data;
       this.cardIndex = 0;
-      this.currentCardSubject.next(cards[this.cardIndex]);
+      this.currentCardSubject.next(this.cards[this.cardIndex]);
       this.isMatchSubject.next(false);
     });
   }
