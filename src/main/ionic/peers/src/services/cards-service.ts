@@ -2,8 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/fromPromise';
-import { Card } from "../models/card";
-// import apigClientFactory from 'aws-api-gateway-client';
+import { ENV } from '@app/env'
 
 declare var apigClientFactory: any;
 
@@ -48,11 +47,11 @@ export class CardsService {
       secretKey: 'NwVT2gJpVXAu+m+C8r7Ny13e2SyNlOEc9huJypnH',
       region: 'us-west-1',
       // invokeUrl:'https://c72uud7t8a.execute-api.us-west-1.amazonaws.com/beta'
-      invokeUrl: 'http://localhost:8100'
+      invokeUrl: ENV.invokeUrl
     });
   }
 
-  public getCards(/*interests: Array<String>*/): Promise<Array<Card>> {
+  public getCards(/*interests: Array<String>*/): Promise<any> {
     let interests = ['AI'];
     const params = {
       interests: interests
