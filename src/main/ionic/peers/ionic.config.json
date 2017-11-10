@@ -2,5 +2,11 @@
   "name": "peers",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {},
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://c72uud7t8a.execute-api.us-west-1.amazonaws.com/beta/api"
+    }
+  ]
 }

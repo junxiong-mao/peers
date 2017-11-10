@@ -11,7 +11,7 @@
   <ion-grid>
     <ion-row>
       <ion-col class="card-container">
-        <card>
+        <card *ngIf="currentCard">
           <div front>
             <ion-row>
               <h2>Level</h2>
@@ -47,10 +47,10 @@
   <ion-toolbar>
     <ion-row class="buttons">
       <ion-col col-6 col-sm-3>
-        <button ion-button color="danger">Pass</button>
+        <button ion-button color="danger" (click)="passBtnClick()">Pass</button>
       </ion-col>
       <ion-col col-6 col-sm-3>
-        <button ion-button color="secondary">Like</button>
+        <button ion-button color="secondary" (click)="likeBtnClick()">Like</button>
       </ion-col>
     </ion-row>
   </ion-toolbar>

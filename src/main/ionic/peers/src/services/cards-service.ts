@@ -1,6 +1,10 @@
-import {Injectable} from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/fromPromise';
+import { ENV } from '@app/env'
+
+declare var apigClientFactory: any;
 
 @Injectable()
 export class CardsService {
@@ -35,7 +39,27 @@ export class CardsService {
     }
   ];
 
-  public getCards(): Observable<any> {
-    return Observable.of(this.cards);
+  apigClient: any;
+
+  constructor() {
+    this.apigClient = apigClientFactory.newClient({
+      accessKey: 'AKIAIDJ24K2S2XDBYMRA',
+      secretKey: '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',
+      region: 'us-west-1',
+      // invokeUrl:'https://c72uud7t8a.execute-api.us-west-1.amazonaws.com/beta'
+      invokeUrl: ENV.invokeUrl
+    });
+  }
+
+  public getCards(/*interests: Array<String>*/): Promise<any> {
+    let interests = ['AI'];
+    const params = {
+      interests: interests
+    };
+    return this.apigClient.getCards(params, {});
+  }
+
+  public postDecision(id: string, decisionType: string): Observable<boolean> {
+    return Observable.of(true);
   }
 }
