@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { CardsState } from "../../states/cards-state";
 import { Subscription } from "rxjs/Subscription";
 import { Card } from "../../models/card";
@@ -14,8 +14,13 @@ export class HomePage implements OnInit, OnDestroy {
   currentCard: Card;
   private cardsSubscription: Subscription;
   private isMatchSubscription: Subscription;
+  private loading: Loading;
 
-  constructor(public navCtrl: NavController, private cardsState: CardsState, private userService: UserService, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController,
+              private cardsState: CardsState,
+              private userService: UserService,
+              private alertCtrl: AlertController,
+              public loadingCtrl: LoadingController) {
   }
 
   ngOnInit(): void {
@@ -33,7 +38,11 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   likeBtnClick() {
-    this.cardsState.likeCurrenCard();
+    this.createLoading();
+    this.loading.present();
+    setTimeout(() => {
+      this.cardsState.likeCurrenCard();
+    }, 2000);
   }
 
   passBtnClick() {
@@ -41,6 +50,10 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   private handleAlert(isMatch: boolean) {
+    if (this.loading) {
+      this.loading.dismiss();
+    }
+    
     if (isMatch) {
       this.userService.getUser(this.currentCard.id).subscribe(
         user => {
@@ -77,6 +90,12 @@ export class HomePage implements OnInit, OnDestroy {
           alert.present();
         });
     }
+  }
+
+  private createLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
   }
 
   private capitalize(s) {
