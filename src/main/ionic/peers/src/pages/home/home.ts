@@ -42,8 +42,9 @@ export class HomePage implements OnInit, OnDestroy {
 
   private handleAlert(isMatch: boolean) {
     if (isMatch) {
-      this.userService.getUser(this.currentCard.id).subscribe(
-        user => {
+      this.userService.getUser(this.currentCard.id).then(
+        response => {
+          let user = response.data;
           let alert = this.alertCtrl.create({
             title: 'You have a match!',
             message: `

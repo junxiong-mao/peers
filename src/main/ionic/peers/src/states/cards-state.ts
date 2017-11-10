@@ -23,7 +23,6 @@ export class CardsState {
   }
 
   public initialize() {
-    // this.cardsService.getCards().subscribe(cards => {
     this.cardsService.getCards().then(response => {
       this.cards = response.data;
       this.cardIndex = 0;
@@ -43,13 +42,13 @@ export class CardsState {
   }
 
   public likeCurrenCard() {
-    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'REJECT').subscribe(
+    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'LIKE').subscribe(
       isMatch => this.isMatchSubject.next(isMatch)
     );
   }
 
   public rejectCurrenCard() {
-    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'LIKE');
+    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'REJECT');
     this.nextCard();
   }
 }
