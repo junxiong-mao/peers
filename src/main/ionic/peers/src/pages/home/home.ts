@@ -5,6 +5,7 @@ import { Subscription } from "rxjs/Subscription";
 import { Card } from "../../models/card";
 import { AlertController } from 'ionic-angular';
 import { UserService } from "../../services/user-service";
+import { AppState } from "../../states/app-state";
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,11 @@ export class HomePage implements OnInit, OnDestroy {
   private cardsSubscription: Subscription;
   private isMatchSubscription: Subscription;
 
-  constructor(public navCtrl: NavController, private cardsState: CardsState, private userService: UserService, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController,
+              private cardsState: CardsState,
+              private appState: AppState,
+              private userService: UserService,
+              private alertCtrl: AlertController) {
   }
 
   ngOnInit(): void {
@@ -42,10 +47,12 @@ export class HomePage implements OnInit, OnDestroy {
 
   private handleAlert(isMatch: boolean) {
     if (isMatch) {
+      this.appState.setIsLoading(true);
       this.userService.getUser(this.currentCard.id).then(
         response => {
+          this.appState.setIsLoading(false);
           let user = response.data;
-          if(!user) {
+          if (!user) {
             console.warn('user was null');
             this.cardsState.nextCard();
             return;

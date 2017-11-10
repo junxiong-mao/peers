@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/fromPromise';
 import { ENV } from '@app/env'
@@ -60,7 +59,11 @@ export class CardsService {
     return this.apigClient.getCards(params, {});
   }
 
-  public postDecision(id: string, decisionType: string): Observable<boolean> {
-    return Observable.of(true).delay(500);
+  public postDecision(id: string, decisionType: string): Promise<any> {
+    const params = {
+      id: id,
+      type: decisionType
+    };
+    return this.apigClient.postDecision(params);
   }
 }
