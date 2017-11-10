@@ -43,8 +43,7 @@ export class CardsService {
 
   constructor() {
     this.apigClient = apigClientFactory.newClient({
-      accessKey: 'AKIAIDJ24K2S2XDBYMRA',
-      secretKey: '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',
+      apiKey: 'jVmBChVpRK6tivnEcT8zGaHAYRmDrglP8SiFvDTE',
       region: 'us-west-1',
       // invokeUrl:'https://c72uud7t8a.execute-api.us-west-1.amazonaws.com/beta'
       invokeUrl: ENV.invokeUrl
