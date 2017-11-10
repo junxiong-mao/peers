@@ -10,8 +10,9 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col class="card-container">
-        <card *ngIf="currentCard">
+      <ion-col class="card-container" swing-stack [stackConfig]="stackConfig" (throwoutleft)="voteUp(false)" (throwoutright)="voteUp(true)" id="card-stack">
+        <div swing-card *ngFor="let currentCard of cards" id="card">
+        <card *ngIf="currentCard" >
           <div front>
             <ion-row>
               <h2>Level</h2>
@@ -37,6 +38,7 @@
             <h3>{{currentCard.bio}}</h3>
           </div>
         </card>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -7,26 +7,43 @@ import { AlertController } from 'ionic-angular';
 import { UserService } from "../../services/user-service";
 import { AppState } from "../../states/app-state";
 
+import {StackConfig} from 'angular2-swing';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
 })
 export class HomePage implements OnInit, OnDestroy {
-  currentCard: Card;
   private cardsSubscription: Subscription;
   private isMatchSubscription: Subscription;
+  cards = [];
+  stackConfig: StackConfig;
 
   constructor(public navCtrl: NavController,
               private cardsState: CardsState,
               private appState: AppState,
               private userService: UserService,
               private alertCtrl: AlertController) {
+    this.stackConfig = {
+      throwOutConfidence: (offsetX, offsetY, element) => {
+        return Math.min(Math.abs(offsetX) / (element.offsetWidth/2), 1);
+      },
+      transform: (element, x, y, r) => {
+        this.onItemMove(element, x, y, r);
+      },
+      throwOutDistance: (d) => {
+        return 800;
+      }
+    };
   }
 
   ngOnInit(): void {
     this.cardsState.initialize();
     this.cardsSubscription = this.cardsState.currentCard.subscribe(
-      currentCard => this.currentCard = currentCard);
+      currentCard => {
+        this.cards.pop();
+        this.cards.push(currentCard);
+      });
     this.isMatchSubscription = this.cardsState.isMatch.subscribe(
       isMatch => this.handleAlert(isMatch)
     );
@@ -48,7 +65,7 @@ export class HomePage implements OnInit, OnDestroy {
   private handleAlert(isMatch: boolean) {
     if (isMatch) {
       this.appState.setIsLoading(true);
-      this.userService.getUser(this.currentCard.id).then(
+      this.userService.getUser(this.cards[0].id).then(
         response => {
           this.appState.setIsLoading(false);
           let user = response.data;
@@ -91,5 +108,49 @@ export class HomePage implements OnInit, OnDestroy {
 
   private capitalize(s) {
     return s[0].toUpperCase() + s.slice(1);
+  }
+
+  voteUp(like: boolean) {
+    if (like) {
+      this.cardsState.likeCurrenCard();
+    } else {
+      this.cardsState.rejectCurrenCard();
+    }
+  }
+
+  onItemMove(element, x, y, r) {
+    var color = '';
+    var abs = Math.abs(x);
+    let min = Math.trunc(Math.max(16*16 - abs, 16*8));
+    let hexCode = this.decimalToHex(min, 2);
+
+    console.log(abs, min, hexCode);
+
+    if(x === 0) {
+      color = '#FFFFFF'
+    } else if (x < 0) {
+      color = '#FF' + hexCode + hexCode;
+    } else {
+      color = '#' + hexCode + 'FF' + hexCode;
+    }
+
+    console.log(color);
+
+    let front = element.querySelector('div .front');
+    let back = element.querySelector('div .back');
+    front.style.background = color;
+    back.style.background = color;
+    element.style['transform'] = `translate3d(0, 0, 0) translate(${x}px, ${y}px) rotate(${r}deg)`;
+  }
+
+  decimalToHex(d, padding) {
+    var hex = Number(d).toString(16);
+    padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;
+
+    while (hex.length < padding) {
+      hex = "0" + hex;
+    }
+
+    return hex;
   }
 }
