@@ -61,6 +61,6 @@ export class CardsService {
   }
 
   public postDecision(id: string, decisionType: string): Observable<boolean> {
-    return Observable.of(true).delay(2000);
+    return Observable.of(true).delay(500);
   }
 }
