@@ -46,10 +46,11 @@ export class CardsState {
 
   public likeCurrenCard() {
     this.appState.setIsLoading(true);
-    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'LIKE').subscribe(
-      isMatch => {
+    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'LIKE').then(
+      response => {
+        this.isMatchSubject.next(response.data);
         this.appState.setIsLoading(false);
-        this.isMatchSubject.next(isMatch)
+        this.nextCard();
       }
     );
   }
