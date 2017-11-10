@@ -14,26 +14,26 @@
         <card *ngIf="currentCard">
           <div front>
             <ion-row>
-              <h2>Level</h2>
+              <h2 class="title">Level</h2>
             </ion-row>
             <ion-row>
               {{currentCard.level}}
             </ion-row>
             <ion-row>
-              <h2>Major</h2>
+              <h2 class="title">Major</h2>
             </ion-row>
             <ion-row>
               {{currentCard.major}}
             </ion-row>
             <ion-row>
-              <h2>Interests</h2>
+              <h2 class="title">Interests</h2>
             </ion-row>
             <ion-row *ngFor="let interest of currentCard.interests">
               {{interest}}
             </ion-row>
           </div>
           <div back>
-            <h2>Biography</h2>
+            <h2 class="title">Biography</h2>
             <h3>{{currentCard.bio}}</h3>
           </div>
         </card>
