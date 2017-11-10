@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CardsService } from "../services/cards-service";
 import { Injectable } from "@angular/core";
 import { Card } from "../models/card";
+import { AppState } from "./app-state";
 
 @Injectable()
 export class CardsState {
@@ -15,7 +16,7 @@ export class CardsState {
 
   //todo: add isFlipped card state
 
-  constructor(private cardsService: CardsService) {
+  constructor(private cardsService: CardsService, private appState: AppState) {
     this.currentCardSubject = new BehaviorSubject(new Card(null, null, null, [], null));
     this.currentCard = this.currentCardSubject.asObservable();
     this.isMatchSubject = new BehaviorSubject(false);
@@ -23,7 +24,9 @@ export class CardsState {
   }
 
   public initialize() {
+    this.appState.setIsLoading(true);
     this.cardsService.getCards().then(response => {
+      this.appState.setIsLoading(false);
       this.cards = response.data;
       this.cardIndex = 0;
       this.currentCardSubject.next(this.cards[this.cardIndex]);
@@ -42,8 +45,12 @@ export class CardsState {
   }
 
   public likeCurrenCard() {
+    this.appState.setIsLoading(true);
     this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'LIKE').subscribe(
-      isMatch => this.isMatchSubject.next(isMatch)
+      isMatch => {
+        this.appState.setIsLoading(false);
+        this.isMatchSubject.next(isMatch)
+      }
     );
   }
 

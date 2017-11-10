@@ -14,6 +14,7 @@ import { CardsService } from "../services/cards-service";
 import { CardsState } from "../states/cards-state";
 
 import { ComponentsModule } from "../components/components.module";
+import { AppState } from "../states/app-state";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ComponentsModule } from "../components/components.module";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserService,
+    AppState,
     CardsState,
     CardsService,
   ]

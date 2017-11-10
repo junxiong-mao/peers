@@ -3,6 +3,7 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/fromPromise';
 import { ENV } from '@app/env'
+import "rxjs/add/operator/delay";
 
 declare var apigClientFactory: any;
 
@@ -60,6 +61,6 @@ export class CardsService {
   }
 
   public postDecision(id: string, decisionType: string): Observable<boolean> {
-    return Observable.of(true);
+    return Observable.of(true).delay(500);
   }
 }
