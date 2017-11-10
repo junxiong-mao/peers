@@ -54,7 +54,6 @@ export class HomePage implements OnInit, OnDestroy {
           let user = response.data;
           if (!user) {
             console.warn('user was null');
-            this.cardsState.nextCard();
             return;
           }
           let alert = this.alertCtrl.create({
@@ -74,7 +73,6 @@ export class HomePage implements OnInit, OnDestroy {
                 text: 'OK',
                 handler: () => {
                   console.log('Cancel clicked');
-                  this.cardsState.nextCard();
                 }
               },
               {
@@ -82,7 +80,6 @@ export class HomePage implements OnInit, OnDestroy {
                 handler: () => {
                   console.log('Email clicked');
                   window.location.href = `mailto:${user.email}?subject=We%20got%20Peered!&body=Hi%20${user.firstName},`;
-                  this.cardsState.nextCard();
                 }
               }
             ]

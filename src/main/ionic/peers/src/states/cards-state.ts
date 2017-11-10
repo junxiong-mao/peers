@@ -50,6 +50,7 @@ export class CardsState {
       response => {
         this.isMatchSubject.next(response.data);
         this.appState.setIsLoading(false);
+        this.nextCard();
       }
     );
   }
