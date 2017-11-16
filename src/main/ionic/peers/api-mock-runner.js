@@ -17,7 +17,7 @@ rimraf.sync(ngApimockPath);
 ngApimock.run({src: path.join(process.cwd(), 'mocks'), outputDir: path.join(process.cwd(), ngApimockPath)});
 var port = argv.port || 8101;
 console.log('Starting server on port', port);
-var proxyOptions = url.parse('https://c72uud7t8a.execute-api.us-west-1.amazonaws.com/beta');
+var proxyOptions = url.parse('https://c72uud7t8a.execute-api.us-west-1.amazonaws.com/beta/api');
 // Disable SSL checking: (source: https://www.npmjs.com/package/ssl-root-cas, section Bad Ideas)
 // - for this URL
 proxyOptions.rejectUnauthorized = false;
