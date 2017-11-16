@@ -23,6 +23,9 @@ var proxyOptions = url.parse('https://c72uud7t8a.execute-api.us-west-1.amazonaws
 proxyOptions.rejectUnauthorized = false;
 // - for the whole server
 // process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+ngApimock.watch("mocks");
+
 connect()
   .use(cors({}))
   .use(ngApimockUtil.ngApimockRequest)

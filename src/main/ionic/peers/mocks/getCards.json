@@ -1,5 +1,5 @@
 {
-  "expression": "/api/v1/users/cards",
+  "expression": "/api/v1/users/cards\\?interests=",
   "method": "GET",
   "name": "getCards",
   "isArray": true,
@@ -10,6 +10,7 @@
       "headers": {},
       "data": [
         {
+          "id": 1,
           "level": "PhD",
           "major": "Computer Science",
           "interests": [
@@ -20,6 +21,7 @@
           "bio": "I like Machine Learning because it's cool"
         },
         {
+          "id": 2,
           "level": "MS",
           "major": "Physics",
           "interests": [
@@ -29,6 +31,7 @@
           "bio": "I like bio because it's cool"
         },
         {
+          "id": 3,
           "level": "MS",
           "major": "Electrical Engineering",
           "interests": [
@@ -39,7 +42,7 @@
         }
       ],
       "statusText": "",
-      "delay": 50
+      "delay": 0
     },
     "some-other-meaningful-scenario-name": {
       "data": {}
