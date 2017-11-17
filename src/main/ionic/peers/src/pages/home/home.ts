@@ -26,7 +26,7 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.isDev = ENV.mode == 'Development';
+    this.isDev = ENV.mode == 'Development' && location.origin.indexOf('localhost') !== -1;
     this.cardsState.initialize();
     this.cardsSubscription = this.cardsState.currentCard.subscribe(
       currentCard => this.currentCard = currentCard);
