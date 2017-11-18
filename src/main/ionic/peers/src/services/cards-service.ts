@@ -65,4 +65,5 @@ export class CardsService {
     };
     return this.apigClient.postDecision(params);
   }
+
 }

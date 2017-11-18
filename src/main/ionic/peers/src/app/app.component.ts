@@ -5,8 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { MyProfile } from "../pages/myprofile/myprofile";
 import { AppState } from "../states/app-state";
 import { Subscription } from "rxjs/Subscription";
+
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +32,8 @@ export class MyApp implements OnInit, OnDestroy {
     // used for an example of ngFor and navigation
     this.pages = [
       {title: 'Home', component: HomePage},
-      {title: 'List', component: ListPage}
+      {title: 'List', component: ListPage},
+      {title: 'My Profile', component: MyProfile},
     ];
 
   }

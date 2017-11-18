@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-icon [name]="item.icon" item-start></ion-icon>
+      {{item.title}}
+      <div class="item-note" item-end>
+        {{item.note}}
+      </div>
+    </button>
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
+  <ion-grid *ngIf="user">
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col class="card-container">
+        <ion-row>
+          <ion-col>
+            <img class="user-photo" src="{{user.photoUrl}}" />
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <h6 class="title">Name: </h6><span>{{user.firstName + " " + user.lastName}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h6 class="title">Level: </h6><span>{{user.level}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h6 class="title">Major: </h6><span>{{user.major}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h6 class="title">Interests: </h6><span>{{user.interests}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h6 class="title">Biography: </h6><span>{{user.bio}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h6 class="title">Email: </h6><span>{{user.email}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

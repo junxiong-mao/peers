@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { MyProfile } from "../pages/myprofile/myprofile";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,11 +17,13 @@ import { CardsState } from "../states/cards-state";
 import { ComponentsModule } from "../components/components.module";
 import { AppState } from "../states/app-state";
 
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
+    MyProfile,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { AppState } from "../states/app-state";
     MyApp,
     HomePage,
     ListPage,
+    MyProfile,
   ],
   providers: [
     StatusBar,
