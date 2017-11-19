@@ -16,6 +16,8 @@ import { CardsState } from "../states/cards-state";
 import { ComponentsModule } from "../components/components.module";
 import { AppState } from "../states/app-state";
 
+import { SwingModule } from 'angular2-swing';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -26,6 +28,7 @@ import { AppState } from "../states/app-state";
     BrowserModule,
     ComponentsModule,
     IonicModule.forRoot(MyApp),
+    SwingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
