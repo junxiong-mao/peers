@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { MyProfile } from "../pages/myprofile/myprofile";
+import { MyProfile } from "../pages/my-profile/my-profile";
 import { AppState } from "../states/app-state";
 import { Subscription } from "rxjs/Subscription";
 

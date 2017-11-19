@@ -5,7 +5,7 @@ import {AppState} from "../../states/app-state";
 
 @Component({
   selector: 'page-myprofile',
-  templateUrl: 'myprofile.html'
+  templateUrl: 'my-profile.html'
 })
 export class MyProfile implements OnInit, OnDestroy {
   user : User;
@@ -23,7 +23,7 @@ export class MyProfile implements OnInit, OnDestroy {
     this.appState.setIsLoading(true);
     this.userService.getUser("2").then(response => {
       this.appState.setIsLoading(false);
-      response.data.photoUrl = "http://jacobsschool.ucsd.edu/faculty/faculty_bios/photos/23.jpg";
+      response.data.photoUrl = "https://i.pinimg.com/736x/45/18/61/4518617f909007087ef9cebbfcaec007--rock-painting-bonsai.jpg";
       this.user = response.data;
     })
   }
