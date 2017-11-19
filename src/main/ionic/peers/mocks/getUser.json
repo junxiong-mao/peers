@@ -1,0 +1,32 @@
+{
+  "expression": "/api/v1/users\\?id=",
+  "method": "GET",
+  "name": "getUser",
+  "isArray": false,
+  "responses": {
+    "success": {
+      "default": true,
+      "status": 200,
+      "headers": {},
+      "data": {
+        "id": 123,
+        "firstName": "John",
+        "lastName": "Doe",
+        "level": "phd",
+        "major": "Computer Science",
+        "interests": [
+          "Machine Learning",
+          "AI"
+        ],
+        "bio": "I like turtles.",
+        "email": "email@ucsd.edu",
+        "photoUrl": "https://i.pinimg.com/736x/45/18/61/4518617f909007087ef9cebbfcaec007--rock-painting-bonsai.jpg"
+      },
+      "statusText": "",
+      "delay": 0
+    },
+    "some-other-meaningful-scenario-name": {
+      "data": {}
+    }
+  }
+}

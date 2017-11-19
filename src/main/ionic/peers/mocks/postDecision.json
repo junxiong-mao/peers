@@ -1,0 +1,23 @@
+{
+  "expression": "/api/v1/users/cards/decision\\?type=",
+  "method": "GET",
+  "name": "postDecision",
+  "isArray": false,
+  "responses": {
+    "match": {
+      "default": true,
+      "status": 200,
+      "headers": {},
+      "data": true,
+      "statusText": "",
+      "delay": 0
+    },
+    "noMatch": {
+      "status": 200,
+      "headers": {},
+      "data": false,
+      "statusText": "",
+      "delay": 0
+    }
+  }
+}

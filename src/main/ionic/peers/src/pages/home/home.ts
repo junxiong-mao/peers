@@ -6,6 +6,7 @@ import { Card } from "../../models/card";
 import { AlertController } from 'ionic-angular';
 import { UserService } from "../../services/user-service";
 import { AppState } from "../../states/app-state";
+import { ENV } from "@app/env";
 
 @Component({
   selector: 'page-home',
@@ -13,6 +14,7 @@ import { AppState } from "../../states/app-state";
 })
 export class HomePage implements OnInit, OnDestroy {
   currentCard: Card;
+  isDev = false;
   private cardsSubscription: Subscription;
   private isMatchSubscription: Subscription;
 
@@ -24,6 +26,7 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.isDev = ENV.mode == 'Development' && location.origin.indexOf('localhost') !== -1;
     this.cardsState.initialize();
     this.cardsSubscription = this.cardsState.currentCard.subscribe(
       currentCard => this.currentCard = currentCard);
