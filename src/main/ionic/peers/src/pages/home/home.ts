@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CardsState } from "../../states/cards-state";
 import { Subscription } from "rxjs/Subscription";
-import { Card } from "../../models/card";
 import { AlertController } from 'ionic-angular';
 import { UserService } from "../../services/user-service";
 import { AppState } from "../../states/app-state";
