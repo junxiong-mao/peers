@@ -16,7 +16,6 @@ import {StackConfig} from 'angular2-swing';
 })
 export class HomePage implements OnInit, OnDestroy {
 
-  currentCard: Card;
   isDev = false;
 
   private cardsSubscription: Subscription;
