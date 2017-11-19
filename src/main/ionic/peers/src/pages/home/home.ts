@@ -60,11 +60,11 @@ export class HomePage implements OnInit, OnDestroy {
     this.isMatchSubscription.unsubscribe();
   }
 
-  likeBtnClick() {
+  likeCard() {
     this.cardsState.likeCurrenCard();
   }
 
-  passBtnClick() {
+  rejectCard() {
     this.cardsState.rejectCurrenCard();
   }
 
@@ -114,14 +114,6 @@ export class HomePage implements OnInit, OnDestroy {
 
   private capitalize(s) {
     return s[0].toUpperCase() + s.slice(1);
-  }
-
-  voteUp(like: boolean) {
-    if (like) {
-      this.cardsState.likeCurrenCard();
-    } else {
-      this.cardsState.rejectCurrenCard();
-    }
   }
 
   onItemMove(element, x, y, r) {
