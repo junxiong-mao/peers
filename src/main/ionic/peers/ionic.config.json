@@ -6,7 +6,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "https://c72uud7t8a.execute-api.us-west-1.amazonaws.com/beta/api"
+      "proxyUrl": "http://localhost:8101/api"
     }
   ]
 }

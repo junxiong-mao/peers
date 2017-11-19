@@ -9,7 +9,8 @@
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "ionic:serve": "ionic-app-scripts serve",
+    "start": "node api-mock-runner.js | npm run ionic:serve"
   },
   "dependencies": {
     "@angular/common": "4.4.4",
@@ -33,6 +34,9 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.1",
+    "connect": "^3.6.5",
+    "connect-cors": "^0.5.6",
+    "ng-apimock": "^1.4.2",
     "typescript": "2.3.4"
   },
   "config": {
