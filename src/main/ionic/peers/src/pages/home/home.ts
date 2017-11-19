@@ -60,7 +60,7 @@ export class HomePage implements OnInit, OnDestroy {
             title: 'You have a match!',
             message: `
               <img class="user-photo" src="${user.photoUrl}" />
-              <h3 class="test">${this.capitalize(user.firstName)} ${this.capitalize(user.lastName)}</h3>
+              <h3>${this.capitalize(user.firstName)} ${this.capitalize(user.lastName)}</h3>
               <b>Major:</b><br/>
               ${user.major}<br/><br/>
               <b>Level:</b><br/>
