@@ -16,19 +16,19 @@
             <ion-row>
               <h2 class="title">Level</h2>
             </ion-row>
-            <ion-row>
+            <ion-row data-test="level">
               {{currentCard.level}}
             </ion-row>
             <ion-row>
               <h2 class="title">Major</h2>
             </ion-row>
-            <ion-row>
+            <ion-row data-test="major">
               {{currentCard.major}}
             </ion-row>
             <ion-row>
               <h2 class="title">Interests</h2>
             </ion-row>
-            <ion-row *ngFor="let interest of currentCard.interests">
+            <ion-row data-test="interest" *ngFor="let interest of currentCard.interests">
               {{interest}}
             </ion-row>
           </div>
