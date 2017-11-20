@@ -18,6 +18,12 @@
       "data": false,
       "statusText": "",
       "delay": 0
+    },
+    "error": {
+      "status": 500,
+      "headers": {},
+      "statusText": "Oops something went wrong",
+      "delay": 0
     }
   }
 }

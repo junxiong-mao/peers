@@ -23,3 +23,14 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("selectScenario", function (identifier, scenario) {
+  cy.request("PUT", 'http://localhost:8101/ngapimock/mocks', JSON.stringify({
+    identifier: identifier,
+    scenario: scenario
+  }))
+});
+
+Cypress.Commands.add("resetScenariosToDefaults", function () {
+  cy.request("PUT", 'http://localhost:8101/ngapimock/mocks/defaults', null);
+});
