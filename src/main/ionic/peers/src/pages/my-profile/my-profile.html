@@ -22,43 +22,24 @@
   </div>
   <ion-grid *ngIf="user">
     <ion-row>
-      <ion-col class="card-container">
-        <ion-row>
-          <ion-col text-center col-8 offset-2>
-            <img class="user-photo" src="{{user.photoUrl}}" />
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col text-center col-8 offset-2>
-            <h6 class="title">Name: </h6><span>{{user.firstName + " " + user.lastName}}</span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col text-center col-8 offset-2>
-            <h6 class="title">Level: </h6><span>{{user.level}}</span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col text-center col-8 offset-2>
-            <h6 class="title">Major: </h6><span>{{user.major}}</span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col text-center col-8 offset-2>
-            <h6 class="title">Interests: </h6><span>{{user.interests}}</span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col text-center col-8 offset-2>
-            <h6 class="title">Biography: </h6><span>{{user.bio}}</span>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col text-center col-8 offset-2>
-            <h6 class="title">Email: </h6><span>{{user.email}}</span>
-          </ion-col>
-        </ion-row>
+      <ion-col col-md-4 offset-md-4 col-xs-6 offset-xs-3>
+        <ion-card>
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="{{user.photoUrl}}" imageViewer/>
+            </ion-avatar>
+            <h1>{{user.firstName + " " + user.lastName}}</h1>
+            <h2>{{user.level + ", " + user.major}}</h2>
+          </ion-item>
+          <ion-item>
+            <h2 class="title">Interests</h2>
+            <p>{{user.interests}}</p>
+            <h2 class="title">Biography</h2>
+            <p>{{user.bio}}</p>
+            <h2 class="title">Email</h2>
+            <p>{{user.email}}</p>
+          </ion-item>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
