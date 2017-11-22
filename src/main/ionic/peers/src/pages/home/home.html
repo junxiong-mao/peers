@@ -3,42 +3,56 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Home <a *ngIf="isDev" href="http://localhost:8101/mocking" target="_blank" style="float: right">Mock config</a></ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
   <ion-grid>
-    <ion-card>
-      <ion-card-content>
-        <ion-row>
-          <h2>Level</h2>
-        </ion-row>
-        <ion-row>
-          {{currentCard.level}}
-        </ion-row>
-        <ion-row>
-          <h2>Major</h2>
-        </ion-row>
-        <ion-row>
-          {{currentCard.major}}
-        </ion-row>
-        <ion-row>
-          <h2>Interests</h2>
-        </ion-row>
-        <ion-row *ngFor="let interest of currentCard.interests">
-          {{interest}}
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-    <ion-row class="buttons">
-      <ion-col col-6 col-sm-3>
-        <button ion-button color="danger">Pass</button>
-      </ion-col>
-      <ion-col col-6 col-sm-3>
-        <button ion-button color="secondary">Like</button>
+    <ion-row>
+      <ion-col class="card-container" swing-stack [stackConfig]="stackConfig" (throwoutleft)="rejectCard()" (throwoutright)="likeCard()" id="card-stack">
+        <div swing-card *ngFor="let currentCard of cards" id="card">
+        <card *ngIf="currentCard" >
+          <div front>
+            <ion-row>
+              <h2 class="title">Level</h2>
+            </ion-row>
+            <ion-row>
+              {{currentCard.level}}
+            </ion-row>
+            <ion-row>
+              <h2 class="title">Major</h2>
+            </ion-row>
+            <ion-row>
+              {{currentCard.major}}
+            </ion-row>
+            <ion-row>
+              <h2 class="title">Interests</h2>
+            </ion-row>
+            <ion-row *ngFor="let interest of currentCard.interests">
+              {{interest}}
+            </ion-row>
+          </div>
+          <div back>
+            <h2 class="title">Biography</h2>
+            <h3>{{currentCard.bio}}</h3>
+          </div>
+        </card>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="buttons">
+      <ion-col col-6 col-sm-3>
+        <button ion-button color="danger" (click)="rejectCard()">Pass</button>
+      </ion-col>
+      <ion-col col-6 col-sm-3>
+        <button ion-button color="secondary" (click)="likeCard()">Like</button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

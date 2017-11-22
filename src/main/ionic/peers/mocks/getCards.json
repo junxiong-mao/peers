@@ -1,0 +1,51 @@
+{
+  "expression": "/api/v1/users/cards\\?interests=",
+  "method": "GET",
+  "name": "getCards",
+  "isArray": true,
+  "responses": {
+    "success": {
+      "default": true,
+      "status": 200,
+      "headers": {},
+      "data": [
+        {
+          "id": 1,
+          "level": "PhD",
+          "major": "Computer Science",
+          "interests": [
+            "Machine Learning",
+            "Bumblebees",
+            "Biology"
+          ],
+          "bio": "I like Machine Learning because it's cool"
+        },
+        {
+          "id": 2,
+          "level": "MS",
+          "major": "Physics",
+          "interests": [
+            "Biology",
+            "Newton"
+          ],
+          "bio": "I like bio because it's cool"
+        },
+        {
+          "id": 3,
+          "level": "MS",
+          "major": "Electrical Engineering",
+          "interests": [
+            "Processors",
+            "Digital Signal Processing"
+          ],
+          "bio": "I like Digital Signal Processing because it's cool"
+        }
+      ],
+      "statusText": "",
+      "delay": 0
+    },
+    "some-other-meaningful-scenario-name": {
+      "data": {}
+    }
+  }
+}

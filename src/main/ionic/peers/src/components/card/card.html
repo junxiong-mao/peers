@@ -1,0 +1,14 @@
+<div class="flip-container" [ngClass]="{flip: isFlipped}" (click)="doFlip()">
+  <div class="flipper">
+    <ion-card class="front">
+      <ion-card-content>
+        <ng-content select="[front]"></ng-content>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="back">
+      <ion-card-content>
+        <ng-content select="[back]"></ng-content>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</div>

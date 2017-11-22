@@ -9,29 +9,39 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { UserService } from "../services/user-service";
 import { CardsService } from "../services/cards-service";
 import { CardsState } from "../states/cards-state";
+
+import { ComponentsModule } from "../components/components.module";
+import { AppState } from "../states/app-state";
+
+import { SwingModule } from 'angular2-swing';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
   ],
   imports: [
     BrowserModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp),
+    SwingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserService,
+    AppState,
     CardsState,
     CardsService,
   ]
