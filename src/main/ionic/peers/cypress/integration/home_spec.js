@@ -111,6 +111,38 @@ describe('Home Page', function () {
         .should('contain', 'MS');
     });
 
+    it('Successfully like a card with LIKE button and receiving a match', function () {
+      //Given
+      cy.selectScenario('postDecision', 'match');
+
+      cy.get('card').get('[data-test=level]')
+        .should('contain', 'PhD');
+      cy.contains('You have a match!').should('not.be.visible');
+      cy.contains('John Doe').should('not.be.visible');
+
+      //When
+      cy.get('.buttons')
+        .get('[data-test=likeButton]').click();
+
+      //Then
+      cy.contains('You have a match!').should('be.visible');
+
+      var message = cy.get('.alert-message');
+      cy.contains('John Doe').should('be.visible');
+      message.get('.alert-message > b:nth-child(3)')
+        .should('contain', 'Major');
+      message.get('.major').should('contain', 'Computer Science');
+      message.get('.level').should('contain', 'phd');
+      message.get('.interests').should('contain', 'Machine Learning,AI');
+
+      cy.get('.alert-button-group').contains('Send Email');
+      cy.get('.alert-button-group').contains('OK').click();
+      cy.contains('You have a match!').should('not.be.visible');
+
+      cy.get('card').get('[data-test=level]')
+        .should('contain', 'MS');
+    });
+
     it('Receive error from backend after liking a card with LIKE button', function () {
       //Given
       cy.selectScenario('postDecision', 'error');

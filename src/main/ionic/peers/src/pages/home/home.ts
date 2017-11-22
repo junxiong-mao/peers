@@ -82,11 +82,11 @@ export class HomePage implements OnInit, OnDestroy {
               <img class="user-photo" src="${user.photoUrl}" />
               <h3>${this.capitalize(user.firstName)} ${this.capitalize(user.lastName)}</h3>
               <b>Major:</b><br/>
-              ${user.major}<br/><br/>
+              <span class="major">${user.major}</span><br/><br/>
               <b>Level:</b><br/>
-              ${user.level}<br/><br/>
+              <span class="level">${user.level}</span><br/><br/>
               <b>Interests:</b><br/>
-              ${user.interests}<br/>
+              <span class="interests">${user.interests}</span><br/>
             `,
             buttons: [
               {
