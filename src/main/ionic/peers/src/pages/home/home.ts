@@ -1,14 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { AlertController, NavController } from 'ionic-angular';
 import { CardsState } from "../../states/cards-state";
 import { Subscription } from "rxjs/Subscription";
-import { Card } from "../../models/card";
-import { AlertController } from 'ionic-angular';
 import { UserService } from "../../services/user-service";
 import { AppState } from "../../states/app-state";
 import { ENV } from "@app/env";
 
-import {StackConfig} from 'angular2-swing';
+import { StackConfig } from 'angular2-swing';
 
 @Component({
   selector: 'page-home',
@@ -30,7 +28,7 @@ export class HomePage implements OnInit, OnDestroy {
               private alertCtrl: AlertController) {
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
-        return Math.min(Math.abs(offsetX) / (element.offsetWidth/2), 1);
+        return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
       },
       transform: (element, x, y, r) => {
         this.onItemMove(element, x, y, r);
@@ -107,7 +105,8 @@ export class HomePage implements OnInit, OnDestroy {
             ]
           });
           alert.present();
-        });
+        })
+        .catch(err => this.appState.handleError(err));
     }
   }
 
@@ -118,12 +117,12 @@ export class HomePage implements OnInit, OnDestroy {
   onItemMove(element, x, y, r) {
     var color = '';
     var abs = Math.abs(x);
-    let min = Math.trunc(Math.max(16*16 - abs, 16*8));
+    let min = Math.trunc(Math.max(16 * 16 - abs, 16 * 8));
     let hexCode = this.decimalToHex(min, 2);
 
     console.log(abs, min, hexCode);
 
-    if(x === 0) {
+    if (x === 0) {
       color = '#FFFFFF'
     } else if (x < 0) {
       color = '#FF' + hexCode + hexCode;
