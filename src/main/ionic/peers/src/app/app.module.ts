@@ -17,6 +17,8 @@ import { ComponentsModule } from "../components/components.module";
 import { AppState } from "../states/app-state";
 
 import { SwingModule } from 'angular2-swing';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { SwingModule } from 'angular2-swing';
     BrowserModule,
     ComponentsModule,
     IonicModule.forRoot(MyApp),
-    SwingModule
+    SwingModule,
+    IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

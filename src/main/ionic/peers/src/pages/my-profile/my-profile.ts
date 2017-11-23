@@ -7,16 +7,14 @@ import {AppState} from "../../states/app-state";
   selector: 'page-myprofile',
   templateUrl: 'my-profile.html'
 })
+
 export class MyProfile implements OnInit, OnDestroy {
   user : User;
   constructor(private userService : UserService,
               private appState: AppState) {
-
-
   }
 
   ngOnDestroy() : void {
-
   }
 
   ngOnInit() : void {
@@ -27,5 +25,4 @@ export class MyProfile implements OnInit, OnDestroy {
       this.user = response.data;
     })
   }
-
 }
