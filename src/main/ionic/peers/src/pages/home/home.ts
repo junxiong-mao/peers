@@ -8,7 +8,7 @@ import { UserService } from "../../services/user-service";
 import { AppState } from "../../states/app-state";
 import { ENV } from "@app/env";
 
-import {StackConfig} from 'angular2-swing';
+import { StackConfig } from 'angular2-swing';
 
 @Component({
   selector: 'page-home',

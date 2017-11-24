@@ -6,6 +6,7 @@ import { Injectable } from "@angular/core";
 export class AppState {
   private isLoadingSubject: BehaviorSubject<boolean>;
   public readonly isLoading: Observable<boolean>;
+  public currentUser = null;
 
   private loadingCalls = 0;
 

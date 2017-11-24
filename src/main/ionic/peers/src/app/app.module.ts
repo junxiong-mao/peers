@@ -20,6 +20,8 @@ import { AppState } from "../states/app-state";
 import { SwingModule } from 'angular2-swing';
 import { AuthService } from '../services/auth-service';
 
+//import { CognitoUserPool } from 'amazon-cognito-identity-js';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -49,6 +51,7 @@ import { AuthService } from '../services/auth-service';
     CardsState,
     CardsService,
     AuthService,
+    //CognitoUserPool,
   ]
 })
 export class AppModule {
