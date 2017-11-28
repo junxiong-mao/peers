@@ -18,8 +18,9 @@ export class HomePage implements OnInit, OnDestroy {
 
   isDev = false;
 
-  private cardsSubscription: Subscription;
-  private isMatchSubscription: Subscription;
+  private subscriptions: Subscription = new Subscription();
+
+  isCurrentCardFlipped: boolean;
   cards = [];
   stackConfig: StackConfig;
 
@@ -44,19 +45,22 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isDev = ENV.mode == 'Development' && location.origin.indexOf('localhost') !== -1;
     this.cardsState.initialize();
-    this.cardsSubscription = this.cardsState.currentCard.subscribe(
+    this.subscriptions.add(this.cardsState.currentCard.subscribe(
       currentCard => {
         this.cards.pop();
         this.cards.push(currentCard);
-      });
-    this.isMatchSubscription = this.cardsState.isMatch.subscribe(
+      }));
+    this.subscriptions.add(this.cardsState.isMatch.subscribe(
       isMatch => this.handleAlert(isMatch)
-    );
+    ));
+
+    this.subscriptions.add(this.cardsState.isFlipped.subscribe(
+      isFlipped => this.isCurrentCardFlipped = isFlipped
+    ));
   }
 
   ngOnDestroy(): void {
-    this.cardsSubscription.unsubscribe();
-    this.isMatchSubscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   likeCard() {
@@ -149,5 +153,9 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     return hex;
+  }
+
+  flipCurrentCard() {
+    this.cardsState.flipCurrentCard();
   }
 }

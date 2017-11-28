@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the CardComponent component.
@@ -12,13 +12,10 @@ import { Component } from '@angular/core';
 })
 export class CardComponent {
 
+  @Input()
   isFlipped = false;
 
   constructor() {
-  }
-
-  doFlip() {
-    this.isFlipped = !this.isFlipped;
   }
 
 }

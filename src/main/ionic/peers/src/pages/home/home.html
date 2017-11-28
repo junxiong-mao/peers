@@ -11,7 +11,7 @@
     <ion-row>
       <ion-col class="card-container" swing-stack [stackConfig]="stackConfig" (throwoutleft)="rejectCard()" (throwoutright)="likeCard()" id="card-stack">
         <div swing-card *ngFor="let currentCard of cards" id="card">
-        <card *ngIf="currentCard" >
+        <card *ngIf="currentCard" [isFlipped]="isCurrentCardFlipped" (click)="flipCurrentCard()">
           <div front>
             <ion-row>
               <h2 class="title">Level</h2>

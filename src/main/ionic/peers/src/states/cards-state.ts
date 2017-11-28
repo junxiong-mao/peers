@@ -13,14 +13,16 @@ export class CardsState {
   public readonly currentCard: Observable<Card>;
   private isMatchSubject: BehaviorSubject<boolean>;
   public readonly isMatch: Observable<boolean>;
-
-  //todo: add isFlipped card state
+  private isFlippedSubject: BehaviorSubject<boolean>;
+  public readonly isFlipped: Observable<boolean>;
 
   constructor(private cardsService: CardsService, private appState: AppState) {
     this.currentCardSubject = new BehaviorSubject(new Card(null, null, null, [], null));
     this.currentCard = this.currentCardSubject.asObservable();
     this.isMatchSubject = new BehaviorSubject(false);
     this.isMatch = this.isMatchSubject.asObservable();
+    this.isFlippedSubject = new BehaviorSubject(false);
+    this.isFlipped = this.isFlippedSubject.asObservable();
   }
 
   public initialize() {
@@ -29,14 +31,16 @@ export class CardsState {
       this.appState.setIsLoading(false);
       this.cards = response.data;
       this.cardIndex = 0;
-      this.currentCardSubject.next(this.cards[this.cardIndex]);
       this.isMatchSubject.next(false);
+      this.isFlippedSubject.next(false);
+      this.currentCardSubject.next(this.cards[this.cardIndex]);
     });
   }
 
   public nextCard() {
     this.cardIndex++;
     this.isMatchSubject.next(false);
+    this.isFlippedSubject.next(false);
     if (this.cardIndex >= this.cards.length) {
       this.initialize();
     } else {
@@ -58,5 +62,9 @@ export class CardsState {
   public rejectCurrenCard() {
     this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'REJECT');
     this.nextCard();
+  }
+
+  public flipCurrentCard() {
+    this.isFlippedSubject.next(!this.isFlippedSubject.value);
   }
 }
