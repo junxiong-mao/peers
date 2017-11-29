@@ -10,6 +10,7 @@
     <form (ngSubmit)="login()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
+          <ion-card>
           <ion-list inset>
 
             <ion-item>
@@ -21,13 +22,16 @@
             </ion-item>
 
           </ion-list>
+          </ion-card>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col class="signup-col">
+          <ion-card>
           <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
           <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
+          </ion-card>
         </ion-col>
       </ion-row>
 
