@@ -25,8 +25,11 @@
       "statusText": "",
       "delay": 0
     },
-    "some-other-meaningful-scenario-name": {
-      "data": {}
+    "error": {
+      "status": 500,
+      "headers": {},
+      "statusText": "Oops something went wrong",
+      "delay": 0
     }
   }
 }
