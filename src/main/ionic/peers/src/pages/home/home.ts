@@ -120,8 +120,6 @@ export class HomePage implements OnInit, OnDestroy {
     let min = Math.trunc(Math.max(16 * 16 - abs, 16 * 8));
     let hexCode = this.decimalToHex(min, 2);
 
-    console.log(abs, min, hexCode);
-
     if (x === 0) {
       color = '#FFFFFF'
     } else if (x < 0) {
@@ -129,8 +127,6 @@ export class HomePage implements OnInit, OnDestroy {
     } else {
       color = '#' + hexCode + 'FF' + hexCode;
     }
-
-    console.log(color);
 
     let front = element.querySelector('div .front');
     let back = element.querySelector('div .back');
