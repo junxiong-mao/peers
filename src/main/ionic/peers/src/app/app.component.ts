@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Loading, LoadingController, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,9 +13,8 @@ import { AuthService } from "../services/auth-service";
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp implements OnInit, OnDestroy {
+export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  loading: Loading;
 
   appStateSubscription: Subscription;
   rootPage: any = LoginPage;
@@ -35,6 +34,7 @@ export class MyApp implements OnInit, OnDestroy {
       }
       this.appState.setIsLoading(false);
     });
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -44,26 +44,6 @@ export class MyApp implements OnInit, OnDestroy {
       {title: 'Login', component: LoginPage}
     ];
 
-  }
-
-  ngOnInit(): void {
-    this.createLoading();
-    this.appStateSubscription = this.appState.isLoading.subscribe(
-      isLoading => {
-        if (isLoading) {
-          this.createLoading();
-          this.loading.present();
-        } else {
-          if(this.loading) {
-            this.loading.dismiss();
-          }
-        }
-      }
-    )
-  }
-
-  ngOnDestroy(): void {
-    this.appStateSubscription.unsubscribe();
   }
 
   initializeApp() {
@@ -86,9 +66,4 @@ export class MyApp implements OnInit, OnDestroy {
     this.nav.setRoot(page.component);
   }
 
-  private createLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-  }
 }
