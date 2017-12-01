@@ -1,4 +1,4 @@
-describe('Home Page', function () {
+describe('My Profile Page', function () {
   beforeEach(function () {
     cy.resetScenariosToDefaults();
     cy.visit('http://localhost:8100')
@@ -15,10 +15,10 @@ describe('Home Page', function () {
     cy.get('.buttons')
       .get('[data-test=menuButton]').click();
 
+    cy.wait(500); // give the side menu enough time to fully expand
+
     cy.get('ion-menu')
       .get('[data-test=profileButton]').click();
-
-    cy.get('ion-menu').click('right');
 
     //Then
     var profile = cy.get('ion-card');
