@@ -18,7 +18,11 @@ import { ComponentsModule } from "../components/components.module";
 import { AppState } from "../states/app-state";
 
 import { SwingModule } from 'angular2-swing';
-import { AuthService } from '../services/auth-service';
+import { AuthService } from '../services/auth/auth-service';
+import { AuthServiceMock } from "../services/auth/auth-service-mock";
+
+import { HttpModule } from '@angular/http';
+import {HttpClientModule} from "@angular/common/http";
 
 //import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
@@ -33,7 +37,8 @@ import { AuthService } from '../services/auth-service';
     BrowserModule,
     ComponentsModule,
     IonicModule.forRoot(MyApp),
-    SwingModule
+    SwingModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,7 +55,8 @@ import { AuthService } from '../services/auth-service';
     AppState,
     CardsState,
     CardsService,
-    AuthService,
+    //AuthService
+    {provide: AuthService, useClass: AuthServiceMock}
     //CognitoUserPool,
   ]
 })

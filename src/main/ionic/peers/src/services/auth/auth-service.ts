@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 //import * as AWS from 'aws-sdk';
 import * as AWSCognito from 'amazon-cognito-identity-js';
-import { AppState } from "../states/app-state";
+import { AppState } from "../../states/app-state";
 
 export class UserLogin {
   name: string;
@@ -28,6 +28,7 @@ export class AuthService {
   access: boolean;
 
   constructor(private appState : AppState) {
+    console.log("AuthService");
     //AWS.config.region = "us-west-2";
   }
 
