@@ -1,0 +1,29 @@
+{
+  "expression": "/api/testing/current-user",
+  "method": "GET",
+  "name": "getCurrentUser",
+  "isArray": false,
+  "responses": {
+    "loggedInUser": {
+      "default": true,
+      "status": 200,
+      "headers": {},
+      "data": true,
+      "statusText": "",
+      "delay": 0
+    },
+    "noLoggedInUser": {
+      "status": 200,
+      "headers": {},
+      "data": false,
+      "statusText": "",
+      "delay": 0
+    },
+    "error": {
+      "status": 500,
+      "headers": {},
+      "statusText": "Oops something went wrong",
+      "delay": 0
+    }
+  }
+}

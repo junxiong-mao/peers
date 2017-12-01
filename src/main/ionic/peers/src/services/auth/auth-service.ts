@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-//import * as AWS from 'aws-sdk';
 import * as AWSCognito from 'amazon-cognito-identity-js';
-import { AppState } from "../states/app-state";
+import { AppState } from "../../states/app-state";
 
 export class UserLogin {
   name: string;
@@ -15,12 +14,12 @@ export class UserLogin {
   }
 }
 
-const PoolData = {
+const poolDataConfig = {
   UserPoolId: 'us-west-2_Wy2X4wHy6',
   ClientId: '2jmudqp2dthht56d0hrt7fb1fl'
 };
 
-const userPool = new AWSCognito.CognitoUserPool(PoolData);
+const userPool = new AWSCognito.CognitoUserPool(poolDataConfig);
 
 @Injectable()
 export class AuthService {
@@ -28,7 +27,7 @@ export class AuthService {
   access: boolean;
 
   constructor(private appState : AppState) {
-    //AWS.config.region = "us-west-2";
+    console.log("AuthService");
   }
 
   public login(credentials) {
@@ -57,10 +56,17 @@ export class AuthService {
     });
   }
 
-  public signOut() {
+  public signOut()  {
     let currentUser = userPool.getCurrentUser();
-    currentUser.signOut();
-    localStorage.isLoggedIn = false;
+    return Observable.create(observer => {
+      if (currentUser) {
+        currentUser.signOut();
+        observer.next(true);
+      } else {
+        observer.next(false);
+      }
+      observer.complete();
+    })
   }
 
   public checkCurrentUser() {
@@ -100,20 +106,6 @@ export class AuthService {
     return Observable.create(observer => {
       observer.next(true);
       observer.complete();
-    })
-    /*if (credentials.email === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
-    } else {
-      // At this point store the credentials to your backend!
-      return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
-      });
-    }*/
+    });
   }
-
-  /*public getUserInfo() : UserLogin {
-    return this.currentUser;
-  }*/
-
 }

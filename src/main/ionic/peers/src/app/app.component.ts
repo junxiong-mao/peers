@@ -8,7 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { AppState } from "../states/app-state";
 import { Subscription } from "rxjs/Subscription";
-import { AuthService } from "../services/auth-service";
+import { AuthService } from "../services/auth/auth-service";
 
 @Component({
   templateUrl: 'app.html'
@@ -27,9 +27,12 @@ export class MyApp {
               private appState: AppState,
               public loadingCtrl: LoadingController,
               private auth: AuthService) {
+    console.log(this.rootPage);
     this.appState.setIsLoading(true);
     auth.checkCurrentUser().subscribe(isValid => {
+      console.log("isValid: " + isValid, typeof isValid);
       if (isValid) {
+        console.log("set root to homepage");
         this.rootPage = HomePage;
       }
       this.appState.setIsLoading(false);
@@ -56,8 +59,11 @@ export class MyApp {
   }
 
   signOut() {
-    this.auth.signOut();
-    this.openPage(this.pages[2]);
+    this.auth.signOut().subscribe(res => {
+      if (res) {
+        this.openPage(this.pages[2]);
+      }
+    });
   }
 
   openPage(page) {

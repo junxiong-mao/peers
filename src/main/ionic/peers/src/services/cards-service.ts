@@ -12,8 +12,8 @@ export class CardsService {
 
   constructor() {
     this.apigClient = apigClientFactory.newClient({
-      apiKey: 'jVmBChVpRK6tivnEcT8zGaHAYRmDrglP8SiFvDTE',
-      region: 'us-west-1',
+      apiKey: 'Dbwcc2Cr+E56Q1rgXi0dbl0s5Xx+BTORi1MM7wtp',
+      region: 'us-west-2',
       invokeUrl: ENV.invokeUrl
     });
   }

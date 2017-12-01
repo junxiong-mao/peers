@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController} from 'ionic-angular';
-import { AuthService } from '../../services/auth-service';
+import { AuthService } from '../../services/auth/auth-service';
 import { AppState } from "../../states/app-state";
 import { HomePage } from "../home/home";
 
@@ -16,8 +16,9 @@ export class LoginPage {
               private alertCtrl: AlertController,
               private appState: AppState) {
     auth.checkCurrentUser().subscribe(isValid => {
-      console.log(isValid);
-      if (isValid) {
+      console.log("isValid: " + isValid);
+      console.log(typeof isValid);
+      if (isValid == true) {
         console.log("isvalid");
         this.nav.setRoot(HomePage);
       }
@@ -32,6 +33,7 @@ export class LoginPage {
     this.appState.setIsLoading(true);
     this.auth.login(this.registerCredentials).subscribe(session => {
       this.appState.setIsLoading(false);
+      console.log(session);
       if (session) {
         this.nav.setRoot(HomePage);
       } else {
