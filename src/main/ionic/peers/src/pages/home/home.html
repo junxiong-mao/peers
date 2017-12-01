@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <button data-test="menuButton" ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home <a *ngIf="isDev" href="http://localhost:8101/mocking" target="_blank" style="float: right">Mock config</a></ion-title>
@@ -16,19 +16,19 @@
             <ion-row>
               <h2 class="title">Level</h2>
             </ion-row>
-            <ion-row>
+            <ion-row data-test="level">
               {{currentCard.level}}
             </ion-row>
             <ion-row>
               <h2 class="title">Major</h2>
             </ion-row>
-            <ion-row>
+            <ion-row data-test="major">
               {{currentCard.major}}
             </ion-row>
             <ion-row>
               <h2 class="title">Interests</h2>
             </ion-row>
-            <ion-row *ngFor="let interest of currentCard.interests">
+            <ion-row data-test="interest" *ngFor="let interest of currentCard.interests">
               {{interest}}
             </ion-row>
           </div>
@@ -48,10 +48,10 @@
   <ion-toolbar>
     <ion-row class="buttons">
       <ion-col col-6 col-sm-3>
-        <button ion-button color="danger" (click)="rejectCard()">Pass</button>
+        <button data-test="passButton" ion-button color="danger" (click)="rejectCard()">Pass</button>
       </ion-col>
       <ion-col col-6 col-sm-3>
-        <button ion-button color="secondary" (click)="likeCard()">Like</button>
+        <button data-test="likeButton" ion-button color="secondary" (click)="likeCard()">Like</button>
       </ion-col>
     </ion-row>
   </ion-toolbar>
