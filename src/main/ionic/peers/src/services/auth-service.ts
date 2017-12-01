@@ -45,6 +45,7 @@ export class AuthService {
     return Observable.create(observer => {
       currentUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
+          localStorage.isLoggedIn = true;
           observer.next(result);
           observer.complete();
         },
@@ -59,6 +60,7 @@ export class AuthService {
   public signOut() {
     let currentUser = userPool.getCurrentUser();
     currentUser.signOut();
+    localStorage.isLoggedIn = false;
   }
 
   public checkCurrentUser() {
@@ -71,9 +73,11 @@ export class AuthService {
             return;
           }
           observer.next(session.isValid());
+          localStorage.isLoggedIn = true;
         })
       } else {
         observer.next(false);
+        localStorage.isLoggedIn = false;
       }
     });
   }
