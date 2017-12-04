@@ -16,10 +16,7 @@ export class LoginPage {
               private alertCtrl: AlertController,
               private appState: AppState) {
     auth.checkCurrentUser().subscribe(isValid => {
-      console.log("isValid: " + isValid);
-      console.log(typeof isValid);
       if (isValid == true) {
-        console.log("isvalid");
         this.nav.setRoot(HomePage);
       }
     })
@@ -33,7 +30,6 @@ export class LoginPage {
     this.appState.setIsLoading(true);
     this.auth.login(this.registerCredentials).subscribe(session => {
       this.appState.setIsLoading(false);
-      console.log(session);
       if (session) {
         this.nav.setRoot(HomePage);
       } else {

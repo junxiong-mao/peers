@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Loading, LoadingController, Nav, Platform } from 'ionic-angular';
+import { LoadingController, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -27,12 +27,9 @@ export class MyApp {
               private appState: AppState,
               public loadingCtrl: LoadingController,
               private auth: AuthService) {
-    console.log(this.rootPage);
     this.appState.setIsLoading(true);
     auth.checkCurrentUser().subscribe(isValid => {
-      console.log("isValid: " + isValid, typeof isValid);
       if (isValid) {
-        console.log("set root to homepage");
         this.rootPage = HomePage;
       }
       this.appState.setIsLoading(false);

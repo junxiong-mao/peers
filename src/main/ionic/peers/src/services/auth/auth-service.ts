@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import * as AWSCognito from 'amazon-cognito-identity-js';
-import { AppState } from "../../states/app-state";
 
 export class UserLogin {
   name: string;
@@ -15,19 +14,57 @@ export class UserLogin {
 }
 
 const poolDataConfig = {
-  UserPoolId: 'us-west-2_Wy2X4wHy6',
-  ClientId: '2jmudqp2dthht56d0hrt7fb1fl'
+  UserPoolId: 'us-west-2_2d4zGLTiS',
+  ClientId: '64qnrqqi6d1gi5h9n7d4ifb5c3'
 };
 
 const userPool = new AWSCognito.CognitoUserPool(poolDataConfig);
 
 @Injectable()
 export class AuthService {
-  currentUser: UserLogin;
-  access: boolean;
 
-  constructor(private appState : AppState) {
-    console.log("AuthService");
+  constructor() {
+    /*AWS.config.region = 'us-west-2';
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: ''
+    });*/
+  }
+
+  public getSession() : Observable<any> {
+    return Observable.create(observer => {
+      let currentUser = userPool.getCurrentUser();
+      if (!currentUser) {
+        observer.next(null);
+        observer.complete();
+        return;
+      }
+      currentUser.getSession((err, session) => {
+        if (err) {
+          console.log(err);
+          observer.next(null);
+          observer.complete();
+          return;
+        } else {
+          observer.next(session);
+        }
+        observer.complete();
+      });
+    });
+  }
+
+  public getIDToken() : Observable<any> {
+    return Observable.create(observer => {
+      this.getSession().subscribe(session => {
+        if (!session) {
+          observer.next(null);
+          observer.complete();
+          return;
+        }
+        observer.next(session.idToken.jwtToken);
+        observer.complete();
+        return;
+      })
+    })
   }
 
   public login(credentials) {
@@ -44,7 +81,6 @@ export class AuthService {
     return Observable.create(observer => {
       currentUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-          localStorage.isLoggedIn = true;
           observer.next(result);
           observer.complete();
         },
@@ -56,7 +92,7 @@ export class AuthService {
     });
   }
 
-  public signOut()  {
+  public signOut() : Observable<boolean> {
     let currentUser = userPool.getCurrentUser();
     return Observable.create(observer => {
       if (currentUser) {
@@ -71,25 +107,18 @@ export class AuthService {
 
   public checkCurrentUser() {
     return Observable.create(observer => {
-      let currentUser = userPool.getCurrentUser();
-      if (currentUser != null) {
-        currentUser.getSession((err, session) => {
-          if (err) {
-            console.log(err);
-            return;
-          }
+      this.getSession().subscribe(session => {
+        if (session) {
           observer.next(session.isValid());
-          localStorage.isLoggedIn = true;
-        })
-      } else {
-        observer.next(false);
-        localStorage.isLoggedIn = false;
-      }
+        } else {
+          observer.next(false);
+        }
+        observer.complete();
+      });
     });
   }
 
   public register(credentials) {
-    console.log("clicked");
     let attributeList = [];
     let dataEmail = {
       Name: 'email',

@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { AppState } from "../../states/app-state";
 import { Observable } from "rxjs/Observable";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ENV } from "@app/env";
@@ -7,8 +6,8 @@ import { ENV } from "@app/env";
 @Injectable()
 export class AuthServiceMock {
 
-  constructor(private appState : AppState,
-              private http : HttpClient) {
+  constructor(private http : HttpClient) {
+    console.log("mock");
   }
 
   private constructScenario(scenarioType : string) : Observable<boolean> {
@@ -37,7 +36,6 @@ export class AuthServiceMock {
   public checkCurrentUser() : Observable<boolean> {
     return Observable.create(observer => {
       this.http.get(`${ENV.invokeUrl}/api/testing/current-user`).subscribe(res => {
-        console.log("observable", typeof res, res);
         observer.next(res);
         observer.complete();
       });
