@@ -21,6 +21,7 @@ import { SwingModule } from 'angular2-swing';
 import { AuthService } from '../services/auth/auth-service';
 
 import {HttpClientModule} from "@angular/common/http";
+import { ENV } from "@app/env";
 
 @NgModule({
   declarations: [
@@ -51,8 +52,8 @@ import {HttpClientModule} from "@angular/common/http";
     AppState,
     CardsState,
     CardsService,
-    //{provide: AuthService, useClass: ENV.auth},
-    AuthService
+    {provide: AuthService, useClass: ENV.auth},
+    //AuthService
   ]
 })
 export class AppModule {

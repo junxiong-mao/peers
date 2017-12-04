@@ -25,6 +25,14 @@ export class AuthServiceMock {
     });
   }
 
+  public getIDToken() : Observable<any> {
+    return Observable.create(observer => {
+      observer.next("THIS IS MOCKED ID TOKEN");
+      observer.complete();
+      return;
+    })
+  }
+
   public login(credentials) : Observable<boolean> {
     return this.constructScenario("loggedInUser");
   }
