@@ -1,29 +1,36 @@
 import { Injectable } from "@angular/core";
 import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/fromPromise';
-import { ENV } from '@app/env'
+import { ENV } from '@app/env';
 import "rxjs/add/operator/delay";
+import 'rxjs/add/operator/toPromise';
+import {apigClientConfig} from "./apigClientConfig";
+import {AuthService} from "./auth/auth-service";
+import {Observable} from "rxjs/Observable";
 
 declare var apigClientFactory: any;
 
 @Injectable()
 export class CardsService {
   apigClient: any;
-
-  constructor() {
+  constructor(private auth : AuthService) {
     this.apigClient = apigClientFactory.newClient({
-      apiKey: 'Dbwcc2Cr+E56Q1rgXi0dbl0s5Xx+BTORi1MM7wtp',
-      region: 'us-west-2',
+      //apiKey: apigClientConfig.apiKey,
+      region: apigClientConfig.region,
       invokeUrl: ENV.invokeUrl
     });
   }
 
   public getCards(/*interests: Array<String>*/): Promise<any> {
-    let interests = ['AI'];
-    const params = {
-      interests: interests
-    };
-    return this.apigClient.getCards(params, {});
+    console.log("new promise");
+    return this.auth.getIDToken().toPromise().then(token => {
+      let interests = ['AI'];
+      console.log("token:", token);
+      let params = {
+        interests: interests,
+        Authorization: token + " Credential: , SignedHeaders: , Signature: , Date: "
+      }
+      return this.apigClient.getCards(params, {});
+    })
   }
 
   public postDecision(id: string, decisionType: string): Promise<any> {

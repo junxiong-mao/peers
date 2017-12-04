@@ -52,7 +52,8 @@ import {ENV} from "@app/env";
     AppState,
     CardsState,
     CardsService,
-    {provide: AuthService, useClass: ENV.auth},
+    //{provide: AuthService, useClass: ENV.auth},
+    AuthService
   ]
 })
 export class AppModule {

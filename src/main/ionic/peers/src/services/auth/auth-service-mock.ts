@@ -9,6 +9,7 @@ export class AuthServiceMock {
 
   constructor(private appState : AppState,
               private http : HttpClient) {
+    console.log("mock");
   }
 
   private constructScenario(scenarioType : string) : Observable<boolean> {

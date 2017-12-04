@@ -34,7 +34,10 @@ export class CardsState {
         this.currentCardSubject.next(this.cards[this.cardIndex]);
         this.isMatchSubject.next(false);
       })
-      .catch(err => this.appState.handleError(err));
+      .catch(err =>  {
+        console.log("getCard error", err);
+        this.appState.handleError(err);
+      });
   }
 
   public nextCard() {

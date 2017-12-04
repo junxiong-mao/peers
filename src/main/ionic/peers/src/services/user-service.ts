@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import 'rxjs/add/observable/of';
 import { ENV } from '@app/env'
+import {apigClientConfig} from "./apigClientConfig";
 
 declare var apigClientFactory: any;
 
@@ -10,10 +11,7 @@ export class UserService {
 
   constructor() {
     this.apigClient = apigClientFactory.newClient({
-      accessKey: 'AKIAIDJ24K2S2XDBYMRA',
-      secretKey: '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',
-      region: 'us-west-1',
-      // invokeUrl:'https://c72uud7t8a.execute-api.us-west-1.amazonaws.com/beta'
+      region: apigClientConfig.region,
       invokeUrl: ENV.invokeUrl
     });
   }
