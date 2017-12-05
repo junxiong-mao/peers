@@ -5,6 +5,7 @@
   "isArray": false,
   "responses": {
     "loggedInUser": {
+      "default": true,
       "status": 200,
       "headers": {},
       "data": true,
@@ -12,7 +13,6 @@
       "delay": 0
     },
     "noLoggedInUser": {
-      "default": true,
       "status": 200,
       "headers": {},
       "data": false,

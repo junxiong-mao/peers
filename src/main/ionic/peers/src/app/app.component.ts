@@ -17,7 +17,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   appStateSubscription: Subscription;
-  rootPage: any = LoginPage;
+  rootPage: any = null;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -27,12 +27,10 @@ export class MyApp {
               private appState: AppState,
               public loadingCtrl: LoadingController,
               private auth: AuthService) {
-    this.appState.setIsLoading(true);
     auth.checkCurrentUser().subscribe(isValid => {
       if (isValid) {
         this.rootPage = HomePage;
       }
-      this.appState.setIsLoading(false);
     });
 
     this.initializeApp();
