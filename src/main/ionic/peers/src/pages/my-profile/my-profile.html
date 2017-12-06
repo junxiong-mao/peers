@@ -33,11 +33,14 @@
           </ion-item>
           <ion-item>
             <h2 class="title">Interests</h2>
-            <p>{{user.interests}}</p>
+            <p class="user-interests">{{user.interests}}</p>
             <h2 class="title">Biography</h2>
             <p>{{user.bio}}</p>
             <h2 class="title">Email</h2>
             <p>{{user.email}}</p>
+          </ion-item>
+          <ion-item>
+            <button ion-button class="edit-user" (click)="editProfile()">Edit user</button>
           </ion-item>
         </ion-card>
       </ion-col>
