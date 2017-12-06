@@ -18,6 +18,7 @@ import { AppState } from "../states/app-state";
 
 import { SwingModule } from 'angular2-swing';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+import {ModalWithInputs} from "../pages/edit-profile/modal-with-inputs";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     MyApp,
     HomePage,
     MyProfile,
+    ModalWithInputs
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     MyApp,
     HomePage,
     MyProfile,
+    ModalWithInputs
   ],
   providers: [
     StatusBar,

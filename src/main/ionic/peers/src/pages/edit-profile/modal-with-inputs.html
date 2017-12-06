@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()" strong>Close</button>
+    </ion-buttons>
+    <ion-title>Edit user</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #addForm="ngForm" (submit)="save($event)" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label>First name</ion-label>
+        <ion-input [(ngModel)]="firstName" name="firstName" #title="ngModel" type="text" required autofocus text-right></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Last name</ion-label>
+        <ion-input [(ngModel)]="lastName" name="lastName" #title="ngModel" type="text" required text-right></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Level</ion-label>
+        <ion-select [(ngModel)]="level" name="level">
+          <ion-option value="undergrad">undergraduate</ion-option>
+          <ion-option value="master">master</ion-option>
+          <ion-option value="phd">phd</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Major</ion-label>
+        <ion-input [(ngModel)]="major" name="major" #title="ngModel" type="text" required text-right></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Interests</ion-label>
+        <ion-input [(ngModel)]="interests" name="interests" #title="ngModel" type="text" required text-right></ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-label>Bio</ion-label>
+        <ion-textarea [(ngModel)]="bio" name="bio" #title="ngModel" type="text" required rows="6" text-right></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <button ion-button block large type="submit" (click)="submitEditUser()">Submit</button>
+    </div>
+  </form>
+</ion-content>
