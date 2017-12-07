@@ -7,9 +7,9 @@ describe('Login', function () {
 
     it('Login page is displayed correctly', function () {
       cy.get('.login-form').within(function() {
-        cy.get('input:first').should('have.attr', 'placeholder', 'Email')
+        cy.get('input:first').should('have.attr', 'placeholder', 'Email');
         cy.get('input:last').should('have.attr', 'placeholder', 'Password')
-      })
+      });
 
       cy.get('.submit-btn').should('contain', 'Login');
       cy.get('.register-btn').should('contain', 'Create New Account');
@@ -21,8 +21,6 @@ describe('Login', function () {
       cy.get('.login-form').submit();
 
       cy.get('ion-header').should('contain', 'Home');
-
-      cy.getScenario("getCurrentUser", "true");
     });
 
     it('Login error', function () {
@@ -31,8 +29,6 @@ describe('Login', function () {
       cy.get('.login-form').submit();
 
       cy.get('ion-alert').should('contain', 'Access Denied');
-
-      cy.getScenario("getCurrentUser", "false");
     });
   });
 
@@ -51,12 +47,10 @@ describe('Login', function () {
       cy.wait(1000);
       cy.get('ion-list').children('button:last').click();
 
-      cy.getScenario('getCurrentUser', "false");
-
       cy.get('.login-form').within(function() {
-        cy.get('input:first').should('have.attr', 'placeholder', 'Email')
+        cy.get('input:first').should('have.attr', 'placeholder', 'Email');
         cy.get('input:last').should('have.attr', 'placeholder', 'Password')
-      })
+      });
 
       cy.get('.submit-btn').should('contain', 'Login');
       cy.get('.register-btn').should('contain', 'Create New Account');

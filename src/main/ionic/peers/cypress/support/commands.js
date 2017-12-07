@@ -34,10 +34,3 @@ Cypress.Commands.add("selectScenario", function (identifier, scenario) {
 Cypress.Commands.add("resetScenariosToDefaults", function () {
   cy.request("PUT", 'http://localhost:8101/ngapimock/mocks/defaults', null);
 });
-
-Cypress.Commands.add("getScenario", function (identifier, scenario) {
-  cy.request("GET", 'http://localhost:8101/mocking/api/testing/current-user').then(function(res) {
-    var str = res.body.replace(/"/g, '');
-    expect(str).to.eq(scenario);
-  })
-})

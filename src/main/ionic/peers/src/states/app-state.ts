@@ -1,12 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs/Observable';
 import { Loading, LoadingController, ToastController } from "ionic-angular";
 
 @Injectable()
 export class AppState {
-  public readonly isLoading: Observable<boolean>;
-  public currentUser = null;
-
   private loadingCalls = 0;
   private loading: Loading;
 

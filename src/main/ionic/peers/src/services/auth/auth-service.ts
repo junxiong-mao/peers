@@ -3,16 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import * as AWSCognito from 'amazon-cognito-identity-js';
 
-export class UserLogin {
-  name: string;
-  email: string;
-
-  constructor(name: string, email: string) {
-    this.name = name;
-    this.email = email;
-  }
-}
-
 const poolDataConfig = {
   UserPoolId: 'us-west-2_2d4zGLTiS',
   ClientId: '64qnrqqi6d1gi5h9n7d4ifb5c3'
@@ -24,10 +14,6 @@ const userPool = new AWSCognito.CognitoUserPool(poolDataConfig);
 export class AuthService {
 
   constructor() {
-    /*AWS.config.region = 'us-west-2';
-    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: ''
-    });*/
   }
 
   public getSession() : Observable<any> {
