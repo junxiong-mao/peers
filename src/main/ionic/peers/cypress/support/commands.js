@@ -37,6 +37,7 @@ Cypress.Commands.add("resetScenariosToDefaults", function () {
 
 Cypress.Commands.add("getScenario", function (identifier, scenario) {
   cy.request("GET", 'http://localhost:8101/mocking/api/testing/current-user').then(function(res) {
-    expect(res.body).to.eq(scenario);
+    var str = res.body.replace(/"/g, '');
+    expect(str).to.eq(scenario);
   })
 })

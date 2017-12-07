@@ -8,14 +8,14 @@
       "default": true,
       "status": 200,
       "headers": {},
-      "data": true,
+      "data": "true",
       "statusText": "",
       "delay": 0
     },
     "noLoggedInUser": {
       "status": 200,
       "headers": {},
-      "data": false,
+      "data": "false",
       "statusText": "",
       "delay": 0
     },

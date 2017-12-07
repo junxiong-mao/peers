@@ -6,21 +6,27 @@ import { ENV } from "@app/env";
 @Injectable()
 export class AuthServiceMock {
 
+  userCredentials = {
+    email: 'jum029@eng.ucsd.edu',
+    password: '123456'
+  };
+
   constructor(private http : HttpClient) {
-    console.log("mock");
   }
 
   private constructScenario(scenarioType : string) : Observable<boolean> {
     return Observable.create(observer => {
       this.http.put(`${ENV.invokeUrl}/ngapimock/mocks`,
-        JSON.stringify({identifier: "getCurrentUser", scenario: scenarioType}),
+          JSON.stringify({identifier: "getCurrentUser", scenario: scenarioType}),
         {
           headers: new HttpHeaders().set('Content-Type', 'application/json'),
           responseType: 'text'
         }
       ).subscribe(res => {
-        observer.next(this.checkCurrentUser());
-        observer.complete();
+        this.checkCurrentUser().subscribe(currentUser => {
+          observer.next(currentUser);
+          observer.complete();
+        });
       });
     });
   }
@@ -29,12 +35,14 @@ export class AuthServiceMock {
     return Observable.create(observer => {
       observer.next("THIS IS MOCKED ID TOKEN");
       observer.complete();
-      return;
     })
   }
 
   public login(credentials) : Observable<boolean> {
-    return this.constructScenario("loggedInUser");
+    if (this.userCredentials.email == credentials.email && this.userCredentials.password == credentials.password) {
+      return this.constructScenario("loggedInUser");
+    }
+    return this.constructScenario("noLoggedInUser");
   }
 
   public signOut() : Observable<boolean> {
@@ -44,7 +52,7 @@ export class AuthServiceMock {
   public checkCurrentUser() : Observable<boolean> {
     return Observable.create(observer => {
       this.http.get(`${ENV.invokeUrl}/api/testing/current-user`).subscribe(res => {
-        observer.next(res);
+        observer.next(res == 'true');
         observer.complete();
       });
     });

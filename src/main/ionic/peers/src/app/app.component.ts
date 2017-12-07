@@ -26,9 +26,10 @@ export class MyApp {
               public loadingCtrl: LoadingController,
               private auth: AuthService) {
     auth.checkCurrentUser().subscribe(isValid => {
-      this.rootPage = LoginPage;
       if (isValid) {
         this.rootPage = HomePage;
+      } else {
+        this.rootPage = LoginPage;
       }
     });
 
@@ -54,7 +55,7 @@ export class MyApp {
 
   signOut() {
     this.auth.signOut().subscribe(res => {
-      if (res) {
+      if (!res) {
         this.openPage(this.pages[2]);
       }
     });

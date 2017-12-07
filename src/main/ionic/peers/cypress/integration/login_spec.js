@@ -17,12 +17,22 @@ describe('Login', function () {
 
     it('Login', function () {
       cy.get('.login-form').find('input[name="email"]').type('jum029@eng.ucsd.edu').should('have.value', 'jum029@eng.ucsd.edu');
-      cy.get('.login-form').find('input[name="password"]').type('@Mm123456').should('have.value', '@Mm123456');
+      cy.get('.login-form').find('input[name="password"]').type('123456').should('have.value', '123456');
       cy.get('.login-form').submit();
 
       cy.get('ion-header').should('contain', 'Home');
 
       cy.getScenario("getCurrentUser", "true");
+    });
+
+    it('Login error', function () {
+      cy.get('.login-form').find('input[name="email"]').type('jum029@eng.ucsd.edu').should('have.value', 'jum029@eng.ucsd.edu');
+      cy.get('.login-form').find('input[name="password"]').type('1234567').should('have.value', '1234567');
+      cy.get('.login-form').submit();
+
+      cy.get('ion-alert').should('contain', 'Access Denied');
+
+      cy.getScenario("getCurrentUser", "false");
     });
   });
 
