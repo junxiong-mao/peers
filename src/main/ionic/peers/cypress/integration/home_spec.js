@@ -175,4 +175,22 @@ describe('Home Page', function () {
     //     .should('contain', 'MS');
     // });
   });
+
+
+  it('User is routed to login page after receiving 401', function () {
+    // Given
+    cy.selectScenario("getCurrentUser", "noLoggedInUser");
+    cy.selectScenario('postDecision', 'unauthenticated');
+
+    cy.get('ion-header').should('contain', 'Home');
+    cy.get('card').get('[data-test=level]')
+      .should('contain', 'PhD');
+
+    //When
+    cy.get('.buttons')
+      .get('[data-test=passButton]').click();
+
+    // Then
+    cy.get('body').should('contain', 'Login');
+  });
 });

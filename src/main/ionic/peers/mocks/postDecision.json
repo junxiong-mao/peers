@@ -24,6 +24,12 @@
       "headers": {},
       "statusText": "Oops something went wrong",
       "delay": 0
+    },
+    "unauthenticated": {
+      "status": 401,
+      "headers": {},
+      "statusText": "You are not authenticated",
+      "delay": 0
     }
   }
 }
