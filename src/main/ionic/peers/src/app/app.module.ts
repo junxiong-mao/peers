@@ -19,9 +19,10 @@ import { ComponentsModule } from "../components/components.module";
 import { AppState } from "../states/app-state";
 
 import { SwingModule } from 'angular2-swing';
-import { AuthService } from '../services/auth-service';
+import { AuthService } from '../services/auth/auth-service';
 
-//import { CognitoUserPool } from 'amazon-cognito-identity-js';
+import {HttpClientModule} from "@angular/common/http";
+import { ENV } from "@app/env";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AuthService } from '../services/auth-service';
     BrowserModule,
     ComponentsModule,
     IonicModule.forRoot(MyApp),
-    SwingModule
+    SwingModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,8 +55,8 @@ import { AuthService } from '../services/auth-service';
     AppState,
     CardsState,
     CardsService,
-    AuthService,
-    //CognitoUserPool,
+    {provide: AuthService, useClass: ENV.auth},
+    //AuthService
   ]
 })
 export class AppModule {

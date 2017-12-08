@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController} from 'ionic-angular';
-import { AuthService } from '../../services/auth-service';
+import { AuthService } from '../../services/auth/auth-service';
 import { AppState } from "../../states/app-state";
 import { HomePage } from "../home/home";
 import { RegisterPage } from "../register/register";
@@ -17,9 +17,7 @@ export class LoginPage {
               private alertCtrl: AlertController,
               private appState: AppState) {
     auth.checkCurrentUser().subscribe(isValid => {
-      console.log(isValid);
-      if (isValid) {
-        console.log("isvalid");
+      if (isValid == true) {
         this.nav.setRoot(HomePage);
       }
     })

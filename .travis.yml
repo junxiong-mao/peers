@@ -1,0 +1,37 @@
+language: node_js
+node_js:
+  - "8.5.0"
+
+cache:
+  directories:
+    - node_modules
+    - $HOME/.npm
+
+install:
+  - pwd
+  - cd src/main/ionic/peers
+  - pwd
+  - npm install
+
+script:
+  - pwd
+  - npm start &
+  - sleep 5
+  - npm test -- --config videoRecording=false
+  - killall node
+
+before_deploy:
+  - pwd
+  - npm run build
+
+deploy:
+  provider: s3
+  access_key_id: $ACCESS_KEY_ID
+  secret_access_key: $SECRET_ACCESS_KEY
+  bucket: static-peers
+  skip_cleanup: true
+  local_dir: www
+  region: us-west-1
+  acl: public_read
+  on:
+    branch: master

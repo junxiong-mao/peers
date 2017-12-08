@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Loading, LoadingController, Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {Component, ViewChild} from '@angular/core';
+import {Nav, Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -9,33 +9,31 @@ import { RegisterPage } from "../pages/register/register";
 import { LoginPage } from '../pages/login/login';
 import { AppState } from "../states/app-state";
 import { Subscription } from "rxjs/Subscription";
-import { AuthService } from "../services/auth-service";
+import { AuthService } from "../services/auth/auth-service";
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp implements OnInit, OnDestroy {
+export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  loading: Loading;
 
   appStateSubscription: Subscription;
-  rootPage: any = LoginPage;
+  rootPage: any = null;
 
   pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private appState: AppState,
-              public loadingCtrl: LoadingController,
               private auth: AuthService) {
-    this.appState.setIsLoading(true);
     auth.checkCurrentUser().subscribe(isValid => {
       if (isValid) {
         this.rootPage = HomePage;
+      } else {
+        this.rootPage = LoginPage;
       }
-      this.appState.setIsLoading(false);
     });
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -48,26 +46,6 @@ export class MyApp implements OnInit, OnDestroy {
 
   }
 
-  ngOnInit(): void {
-    this.createLoading();
-    this.appStateSubscription = this.appState.isLoading.subscribe(
-      isLoading => {
-        if (isLoading) {
-          this.createLoading();
-          this.loading.present();
-        } else {
-          if(this.loading) {
-            this.loading.dismiss();
-          }
-        }
-      }
-    )
-  }
-
-  ngOnDestroy(): void {
-    this.appStateSubscription.unsubscribe();
-  }
-
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -78,8 +56,11 @@ export class MyApp implements OnInit, OnDestroy {
   }
 
   signOut() {
-    this.auth.signOut();
-    this.openPage(this.pages[2]);
+    this.auth.signOut().subscribe(res => {
+      if (!res) {
+        this.openPage(this.pages[2]);
+      }
+    });
   }
 
   openPage(page) {
@@ -88,9 +69,4 @@ export class MyApp implements OnInit, OnDestroy {
     this.nav.setRoot(page.component);
   }
 
-  private createLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-  }
 }

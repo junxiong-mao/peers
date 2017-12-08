@@ -24,14 +24,19 @@ export class CardsState {
   }
 
   public initialize() {
+    // this.isErrorSubject.next(false);
     this.appState.setIsLoading(true);
-    this.cardsService.getCards().then(response => {
-      this.appState.setIsLoading(false);
-      this.cards = response.data;
-      this.cardIndex = 0;
-      this.currentCardSubject.next(this.cards[this.cardIndex]);
-      this.isMatchSubject.next(false);
-    });
+    this.cardsService.getCards()
+      .then(response => {
+        this.appState.setIsLoading(false);
+        this.cards = response.data;
+        this.cardIndex = 0;
+        this.currentCardSubject.next(this.cards[this.cardIndex]);
+        this.isMatchSubject.next(false);
+      })
+      .catch(err =>  {
+        this.appState.handleError(err);
+      });
   }
 
   public nextCard() {
@@ -51,12 +56,13 @@ export class CardsState {
         this.isMatchSubject.next(response.data);
         this.appState.setIsLoading(false);
         this.nextCard();
-      }
-    );
+      })
+      .catch(err => this.appState.handleError(err));
   }
 
   public rejectCurrenCard() {
-    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'REJECT');
+    this.cardsService.postDecision(this.currentCardSubject.getValue().id, 'REJECT')
+      .catch(err => this.appState.handleError(err));
     this.nextCard();
   }
 }
