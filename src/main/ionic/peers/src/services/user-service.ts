@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import 'rxjs/add/observable/of';
 import { ENV } from '@app/env'
-import {apigClientConfig} from "./apigClientConfig";
-import {AuthService} from "./auth/auth-service";
+import { apigClientConfig } from "./apigClientConfig";
+import { AuthService } from "./auth/auth-service";
 
 declare var apigClientFactory: any;
 
@@ -17,16 +17,16 @@ export class UserService {
     });
   }
 
-  public getUser(userId: string): Promise<any> {
+  public getUser(userId?: string): Promise<any> {
     return this.auth.getIDToken().toPromise().then(token => {
       const params = {
-        id: userId
+        id: userId ? userId : -1
       };
       const additionalParams = {
         headers: {
           Authorization: token
         }
-      }
+      };
       return this.apigClient.getUserInfo(params, null, additionalParams);
     });
   }
