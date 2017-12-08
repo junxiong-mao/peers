@@ -19,7 +19,6 @@ import { AppState } from "../states/app-state";
 
 import { SwingModule } from 'angular2-swing';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
-import { ModalWithInputs } from "../pages/edit-profile/modal-with-inputs";
 
 import { AuthService } from '../services/auth/auth-service';
 
@@ -32,7 +31,6 @@ import { ENV } from "@app/env";
     HomePage,
     MyProfile,
     LoginPage,
-    ModalWithInputs
   ],
   imports: [
     BrowserModule,
@@ -45,7 +43,6 @@ import { ENV } from "@app/env";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ModalWithInputs,
     HomePage,
     MyProfile,
     LoginPage,

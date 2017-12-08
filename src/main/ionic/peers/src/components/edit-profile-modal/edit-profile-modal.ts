@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {ViewController, IonicPage, Platform, NavParams} from 'ionic-angular';
+import { NavParams, Platform, ViewController } from 'ionic-angular';
 
 @Component({
-  templateUrl: 'modal-with-inputs.html'
+  templateUrl: 'edit-profile-modal.html'
 })
-export class ModalWithInputs {
+export class EditProfileModal {
   data: any;
   firstName: string;
   lastName: string;
@@ -12,6 +12,7 @@ export class ModalWithInputs {
   major: string;
   interests: string;
   bio: string;
+
   constructor(public platform: Platform,
               public params: NavParams,
               public viewCtrl: ViewController) {
@@ -30,6 +31,7 @@ export class ModalWithInputs {
   public dismiss() {
     this.viewCtrl.dismiss(null);
   }
+
   public submitEditUser() {
 
   }

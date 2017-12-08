@@ -3,7 +3,7 @@ import { User } from "../../models/user";
 import { UserService } from "../../services/user-service";
 import { AppState } from "../../states/app-state";
 import { AlertController, ModalController } from "ionic-angular";
-import { ModalWithInputs } from "../edit-profile/modal-with-inputs";
+import { EditProfileModal } from "../../components/edit-profile-modal/edit-profile-modal";
 
 @Component({
   selector: 'page-myprofile',
@@ -32,7 +32,7 @@ export class MyProfile implements OnInit, OnDestroy {
 
   editProfile() {
     console.log("editProfile");
-    let profileModal = this.modalCtrl.create(ModalWithInputs, this.user);
+    let profileModal = this.modalCtrl.create(EditProfileModal, this.user);
     profileModal.present();
   }
 }
