@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { MyProfile } from "../pages/my-profile/my-profile";
 import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -18,16 +18,18 @@ import { ComponentsModule } from "../components/components.module";
 import { AppState } from "../states/app-state";
 
 import { SwingModule } from 'angular2-swing';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
+
 import { AuthService } from '../services/auth/auth-service';
 
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { ENV } from "@app/env";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    MyProfile,
     LoginPage,
   ],
   imports: [
@@ -35,13 +37,14 @@ import { ENV } from "@app/env";
     ComponentsModule,
     IonicModule.forRoot(MyApp),
     SwingModule,
+    IonicImageViewerModule,
     HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    MyProfile,
     LoginPage,
   ],
   providers: [
