@@ -64,20 +64,20 @@
 
       <ion-row>
         <ion-col class="signup-col" col-md-6 offset-md-3>
-          <h2>Bio</h2>
+          <h2>Interests</h2>
           <ion-item>
-            <ion-textarea type="text" maxlength="500" placeholder="Bio(500 characters maximum)" name="bio" [(ngModel)]="registerCredentials.bio" required></ion-textarea>
+            <tag-input name="interests" [(ngModel)]='registerCredentials.interests' [onlyFromAutocomplete]="true">
+              <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems"></tag-input-dropdown>
+            </tag-input>
           </ion-item>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col class="signup-col" col-md-6 offset-md-3>
-          <h2>Interests</h2>
+          <h2>Bio</h2>
           <ion-item>
-            <tag-input name="interests" [(ngModel)]='registerCredentials.interests' [onlyFromAutocomplete]="true">
-              <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems"></tag-input-dropdown>
-            </tag-input>
+            <ion-textarea type="text" maxlength="500" placeholder="Bio(500 characters maximum)" name="bio" [(ngModel)]="registerCredentials.bio" required></ion-textarea>
           </ion-item>
         </ion-col>
       </ion-row>
