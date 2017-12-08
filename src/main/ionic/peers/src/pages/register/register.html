@@ -10,6 +10,9 @@
     <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
         <ion-col col-md-6 offset-md-3>
+
+          <h2>Account Info</h2>
+
           <ion-card>
           <ion-list inset>
 
@@ -32,23 +35,26 @@
 
       <ion-row>
         <ion-col col-md-6 offset-md-3>
+
+          <h2>Basic Info</h2>
+
           <ion-card>
             <ion-list inset>
+
+              <ion-item>
+                <ion-input type="text" placeholder="First Name" name="first_name" [(ngModel)]="registerCredentials.firstName" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input type="text" placeholder="Last Name" name="last_name" [(ngModel)]="registerCredentials.lastName" required></ion-input>
+              </ion-item>
 
               <ion-item>
                 <ion-input type="text" placeholder="Major" name="major" [(ngModel)]="registerCredentials.major" required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-input type="text" placeholder="Year" name="year" [(ngModel)]="registerCredentials.year" required></ion-input>
-              </ion-item>
-
-              <ion-item>
-                <ion-input type="text" placeholder="Bio" name="bio" [(ngModel)]="registerCredentials.bio" required></ion-input>
-              </ion-item>
-
-              <ion-item>
-                <ion-input type="text" placeholder="Interests" name="interests" [(ngModel)]="registerCredentials.interests" required></ion-input>
+                <ion-input type="text" placeholder="Level" name="level" [(ngModel)]="registerCredentials.level" required></ion-input>
               </ion-item>
 
             </ion-list>
@@ -58,9 +64,28 @@
 
       <ion-row>
         <ion-col class="signup-col" col-md-6 offset-md-3>
+          <h2>Bio</h2>
+          <ion-item>
+            <ion-textarea autosize class="bio" type="text" maxlength="500" placeholder="Bio" name="bio" [(ngModel)]="registerCredentials.bio" required></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col" col-md-6 offset-md-3>
+          <h2>Interests</h2>
+          <ion-item>
+            <tag-input name="interests" [(ngModel)]='registerCredentials.interests'></tag-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col" col-md-6 offset-md-3>
           <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
         </ion-col>
       </ion-row>
     </form>
+
   </div>
 </ion-content>

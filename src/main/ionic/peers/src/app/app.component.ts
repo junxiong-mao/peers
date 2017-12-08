@@ -15,6 +15,7 @@ import { AuthService } from "../services/auth/auth-service";
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 

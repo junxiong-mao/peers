@@ -8,7 +8,11 @@ import { AuthService } from '../../services/auth/auth-service';
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = { email: '', password: '', confirm_password: '', major: '', year: '', bio: '', interests: '', };
+  registerCredentials = { email: '', password: '', confirm_password: '', firstName: '', lastName: '', major: '', level: '', bio: '', interests: [], };
+
+  // bio: max length 500 chars
+  // interests: csv "A_B_C"
+  // except for email, all other attributes must be prefixed with custom:
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) { }
 
