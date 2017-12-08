@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, IonicPage } from 'ionic-angular';
 import { AuthService } from '../../services/auth/auth-service';
+import { Observable } from 'rxjs/Observable';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'page-register',
@@ -14,7 +16,7 @@ export class RegisterPage {
   // interests: csv "A_B_C"
   // except for email, all other attributes must be prefixed with custom:
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) { }
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private http: HttpClient) { }
 
   public register() {
     this.auth.register(this.registerCredentials).subscribe(success => {
@@ -47,4 +49,12 @@ export class RegisterPage {
     });
     alert.present();
   }
+
+  public requestAutocompleteItems = (text: string) : Observable<Response> => {
+    const url = `${location.origin}/assets/academic-interests.json`;
+    return this.http
+      .get(url)
+      .map(data => data);
+  }
+
 }

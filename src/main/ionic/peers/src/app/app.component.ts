@@ -7,10 +7,10 @@ import { HomePage } from '../pages/home/home';
 import { RegisterPage } from "../pages/register/register";
 import { LoginPage } from '../pages/login/login';
 import { MyProfile } from "../pages/my-profile/my-profile";
-import { AppState } from "../states/app-state";
-import { Subscription } from "rxjs/Subscription";
 
 import { AuthService } from "../services/auth/auth-service";
+import 'rxjs/add/operator/filter'; // imported for tag-input to work
+import 'rxjs/add/operator/debounceTime'; // imported for tag-input to work
 
 @Component({
   templateUrl: 'app.html'
