@@ -45,10 +45,10 @@ import { ENV } from "@app/env";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    ModalWithInputs,
     HomePage,
     MyProfile,
     LoginPage,
-    ModalWithInputs
   ],
   providers: [
     StatusBar,

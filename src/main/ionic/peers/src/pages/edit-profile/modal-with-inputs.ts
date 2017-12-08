@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {ViewController, IonicPage, Platform, NavParams} from 'ionic-angular';
 
-@IonicPage()
 @Component({
   templateUrl: 'modal-with-inputs.html'
 })

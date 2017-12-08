@@ -19,9 +19,8 @@ export class UserService {
 
   public getUser(userId?: string): Promise<any> {
     return this.auth.getIDToken().toPromise().then(token => {
-      const params = {
-        id: userId ? userId : -1
-      };
+      let params: any = {};
+      params.id = userId ? userId : -1;
       const additionalParams = {
         headers: {
           Authorization: token
