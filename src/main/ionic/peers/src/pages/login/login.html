@@ -1,0 +1,40 @@
+<ion-content class="login-content" padding>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="https://preview.ibb.co/nHxKA6/Screen_Shot_2017_11_21_at_2_05_39_PM.png"/>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+    <form (ngSubmit)="login()" #registerForm="ngForm" class="login-form">
+      <ion-row>
+        <ion-col col-md-6 offset-md-3>
+          <ion-card>
+          <ion-list inset>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+            </ion-item>
+
+          </ion-list>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col" col-md-6 offset-md-3>
+          <ion-card>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
+          <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+</ion-content>

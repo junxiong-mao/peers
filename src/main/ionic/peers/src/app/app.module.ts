@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MyProfile } from "../pages/my-profile/my-profile";
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,25 +20,32 @@ import { AppState } from "../states/app-state";
 import { SwingModule } from 'angular2-swing';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
+import { AuthService } from '../services/auth/auth-service';
+
+import { HttpClientModule } from "@angular/common/http";
+import { ENV } from "@app/env";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     MyProfile,
+    LoginPage,
   ],
   imports: [
     BrowserModule,
     ComponentsModule,
     IonicModule.forRoot(MyApp),
     SwingModule,
-    IonicImageViewerModule
+    IonicImageViewerModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     MyProfile,
+    LoginPage,
   ],
   providers: [
     StatusBar,
@@ -47,6 +55,8 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     AppState,
     CardsState,
     CardsService,
+    {provide: AuthService, useClass: ENV.auth},
+    //AuthService
   ]
 })
 export class AppModule {

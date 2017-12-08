@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import 'rxjs/add/observable/of';
 import { ENV } from '@app/env'
+import {apigClientConfig} from "./apigClientConfig";
+import {AuthService} from "./auth/auth-service";
 
 declare var apigClientFactory: any;
 
@@ -8,21 +10,24 @@ declare var apigClientFactory: any;
 export class UserService {
   apigClient: any;
 
-  constructor() {
+  constructor(private auth: AuthService) {
     this.apigClient = apigClientFactory.newClient({
-      accessKey: 'AKIAIDJ24K2S2XDBYMRA',
-      secretKey: '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',
-      region: 'us-west-1',
-      // invokeUrl:'https://c72uud7t8a.execute-api.us-west-1.amazonaws.com/beta'
+      region: apigClientConfig.region,
       invokeUrl: ENV.invokeUrl
     });
   }
 
   public getUser(userId: string): Promise<any> {
-    const params = {
-      id: userId
-    };
-    return this.apigClient.getUserInfo(params, {});
+    return this.auth.getIDToken().toPromise().then(token => {
+      const params = {
+        id: userId
+      };
+      const additionalParams = {
+        headers: {
+          Authorization: token
+        }
+      }
+      return this.apigClient.getUserInfo(params, null, additionalParams);
+    });
   }
-
 }

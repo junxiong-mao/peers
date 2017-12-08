@@ -5,10 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { MyProfile } from "../pages/my-profile/my-profile";
-import { AppState } from "../states/app-state";
-import { Subscription } from "rxjs/Subscription";
-
-
+import { LoginPage } from '../pages/login/login';
+import { AuthService } from "../services/auth/auth-service";
 
 @Component({
   templateUrl: 'app.html'
@@ -16,19 +14,29 @@ import { Subscription } from "rxjs/Subscription";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = null;
 
   pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
-              public splashScreen: SplashScreen) {
+              public splashScreen: SplashScreen,
+              private auth: AuthService) {
+    auth.checkCurrentUser().subscribe(isValid => {
+      if (isValid) {
+        this.rootPage = HomePage;
+      } else {
+        this.rootPage = LoginPage;
+      }
+    });
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       {title: 'Home', component: HomePage},
       {title: 'My Profile', component: MyProfile},
+      {title: 'Login', component: LoginPage}
     ];
 
   }
@@ -39,6 +47,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+  }
+
+  signOut() {
+    this.auth.signOut().subscribe(res => {
+      if (!res) {
+        this.openPage(this.pages[2]);
+      }
     });
   }
 
