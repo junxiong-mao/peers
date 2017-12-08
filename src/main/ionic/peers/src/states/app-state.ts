@@ -3,7 +3,6 @@ import { Loading, LoadingController, ToastController } from "ionic-angular";
 
 @Injectable()
 export class AppState {
-
   private loadingCalls = 0;
   private loading: Loading;
 

@@ -27,7 +27,9 @@
     "@ionic-native/splash-screen": "4.3.2",
     "@ionic-native/status-bar": "4.3.2",
     "@ionic/storage": "2.0.1",
+    "amazon-cognito-identity-js": "^1.26.0",
     "angular2-swing": "^0.14.0",
+    "aws-sdk": "^2.156.0",
     "ionic-angular": "3.8.0",
     "ionicons": "3.0.0",
     "rxjs": "5.4.3",
@@ -36,11 +38,14 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.1",
+    "@types/node": "^8.0.53",
     "connect": "^3.6.5",
     "connect-cors": "^0.5.6",
+    "json-loader": "^0.5.7",
     "cypress": "^1.0.3",
     "ng-apimock": "^1.4.2",
-    "typescript": "2.3.4"
+    "typescript": "2.3.4",
+    "webpack": "^3.8.1"
   },
   "config": {
     "ionic_webpack": "./config/webpack.config.js"

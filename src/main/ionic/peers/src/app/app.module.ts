@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,24 +18,31 @@ import { ComponentsModule } from "../components/components.module";
 import { AppState } from "../states/app-state";
 
 import { SwingModule } from 'angular2-swing';
+import { AuthService } from '../services/auth/auth-service';
+
+import {HttpClientModule} from "@angular/common/http";
+import { ENV } from "@app/env";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
+    LoginPage,
   ],
   imports: [
     BrowserModule,
     ComponentsModule,
     IonicModule.forRoot(MyApp),
-    SwingModule
+    SwingModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     ListPage,
+    LoginPage,
   ],
   providers: [
     StatusBar,
@@ -44,6 +52,8 @@ import { SwingModule } from 'angular2-swing';
     AppState,
     CardsState,
     CardsService,
+    {provide: AuthService, useClass: ENV.auth},
+    //AuthService
   ]
 })
 export class AppModule {

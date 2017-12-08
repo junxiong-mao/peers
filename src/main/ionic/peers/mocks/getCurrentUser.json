@@ -1,21 +1,21 @@
 {
-  "expression": "/api/v1/users/cards/decision\\?type=",
+  "expression": "/api/testing/current-user",
   "method": "GET",
-  "name": "postDecision",
+  "name": "getCurrentUser",
   "isArray": false,
   "responses": {
-    "match": {
+    "loggedInUser": {
       "default": true,
       "status": 200,
       "headers": {},
-      "data": true,
+      "data": "true",
       "statusText": "",
       "delay": 0
     },
-    "noMatch": {
+    "noLoggedInUser": {
       "status": 200,
       "headers": {},
-      "data": false,
+      "data": "false",
       "statusText": "",
       "delay": 0
     },
@@ -23,12 +23,6 @@
       "status": 500,
       "headers": {},
       "statusText": "Oops something went wrong",
-      "delay": 0
-    },
-    "unauthenticated": {
-      "status": 401,
-      "headers": {},
-      "statusText": "You are not authenticated",
       "delay": 0
     }
   }
