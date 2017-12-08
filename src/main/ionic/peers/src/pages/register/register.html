@@ -76,12 +76,7 @@
           <h2>Interests</h2>
           <ion-item>
             <tag-input name="interests" [(ngModel)]='registerCredentials.interests' [onlyFromAutocomplete]="true">
-              <tag-input-dropdown [showDropdownIfEmpty]="true"
-                                  [focusFirstElement]="true"
-                                  [displayBy]="'value'"
-                                  [identifyBy]="'id'"
-                                  [autocompleteObservable]="requestAutocompleteItems">
-              </tag-input-dropdown>
+              <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems"></tag-input-dropdown>
             </tag-input>
           </ion-item>
         </ion-col>
