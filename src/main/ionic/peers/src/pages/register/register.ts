@@ -12,12 +12,18 @@ export class RegisterPage {
   createSuccess = false;
   registerCredentials = { email: '', password: '', confirm_password: '', firstName: '', lastName: '', major: '', level: '', bio: '', interests: [], };
 
+  interests_list;
 
   // bio: max length 500 chars
   // interests: "A_B_C"
   // except for email, all other attributes must be prefixed with "custom:"
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private http: HttpClient) { }
+
+  ngOnInit(): void {
+    const url = `${location.origin}/assets/academic-interests.json`;
+    this.interests_list = this.http.get(url).map(data => data);
+  }
 
   public register() {
     if(this.registerCredentials.password != this.registerCredentials.confirm_password){
@@ -57,10 +63,7 @@ export class RegisterPage {
   }
 
   public requestAutocompleteItems = (text: string) : Observable<Response> => {
-    const url = `${location.origin}/assets/academic-interests.json`;
-    return this.http
-      .get(url)
-      .map(data => data);
+    return this.interests_list;
   }
 
 }
