@@ -25,11 +25,16 @@
           </ion-card>
         </ion-col>
       </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col" col-md-6 offset-md-3>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
+        </ion-col>
+      </ion-row>
     </form>
 
     <ion-row>
       <ion-col class="signup-col" col-md-6 offset-md-3>
-        <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
         <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
       </ion-col>
     </ion-row>

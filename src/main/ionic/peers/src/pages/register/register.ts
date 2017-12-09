@@ -12,6 +12,7 @@ export class RegisterPage {
   createSuccess = false;
   registerCredentials = { email: '', password: '', confirm_password: '', firstName: '', lastName: '', major: '', level: '', bio: '', interests: [], };
 
+
   // bio: max length 500 chars
   // interests: "A_B_C"
   // except for email, all other attributes must be prefixed with "custom:"
@@ -19,17 +20,22 @@ export class RegisterPage {
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private http: HttpClient) { }
 
   public register() {
-    this.auth.register(this.registerCredentials).subscribe(success => {
-        if (success) {
-          this.createSuccess = true;
-          this.showPopup("Success", "Account created.");
-        } else {
-          this.showPopup("Error", "Problem creating account.");
-        }
-      },
-      error => {
-        this.showPopup("Error", error);
-      });
+    if(this.registerCredentials.password != this.registerCredentials.confirm_password){
+      this.showPopup("Error", "Passwords must be the same.");
+    } else {
+
+      this.auth.register(this.registerCredentials).subscribe(success => {
+          if (success) {
+            this.createSuccess = true;
+            this.showPopup("Success", "Account created.");
+          } else {
+            this.showPopup("Error", "Problem creating account.");
+          }
+        },
+        error => {
+          this.showPopup("Error", error);
+        });
+    }
   }
 
   showPopup(title, text) {
