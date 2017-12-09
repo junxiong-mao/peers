@@ -22,7 +22,7 @@ export class RegisterPage {
 
   ngOnInit(): void {
     const url = `${location.origin}/assets/academic-interests.json`;
-    this.interests_list = this.http.get(url).map(data => data);
+    this.interests_list = this.http.get(url);
   }
 
   public register() {
