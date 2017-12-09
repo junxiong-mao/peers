@@ -24,14 +24,11 @@ export class CardsService {
     return this.auth.getIDToken().toPromise().then(token => {
       let interests = ['AI'];
       let params = {
-        interests: interests
+        interests: interests,
+        Authorization: token
       };
-      let additionalParams = {
-        headers: {
-          Authorization: token
-        }
-      };
-      return this.apigClient.getCards(params, null, additionalParams);
+      console.log(token);
+      return this.apigClient.getCards(params, null);
     })
   }
 
@@ -39,14 +36,10 @@ export class CardsService {
     return this.auth.getIDToken().toPromise().then(token => {
       const params = {
         id: id,
-        type: decisionType
+        type: decisionType,
+        Authorization: token
       };
-      let additionalParams = {
-        headers: {
-          Authorization: token
-        }
-      }
-      return this.apigClient.postDecision(params, null, additionalParams);
+      return this.apigClient.postDecision(params, null);
     })
   }
 

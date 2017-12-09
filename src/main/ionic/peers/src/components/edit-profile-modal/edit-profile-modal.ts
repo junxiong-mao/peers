@@ -1,31 +1,44 @@
 import { Component } from '@angular/core';
-import { NavParams, Platform, ViewController } from 'ionic-angular';
+import {NavController, NavParams, Platform, ViewController} from 'ionic-angular';
+import {UserService} from "../../services/user-service";
+import {AppState} from "../../states/app-state";
+import { MyProfile } from "../../pages/my-profile/my-profile";
 
 @Component({
+  selector: 'edit-profile-modal',
   templateUrl: 'edit-profile-modal.html'
 })
 export class EditProfileModal {
   data: any;
-  firstName: string;
-  lastName: string;
-  level: string;
-  major: string;
-  interests: string;
-  bio: string;
+  userInfo = {
+    firstName: '',
+    lastName: '',
+    level: '',
+    major: '',
+    interests: '',
+    bio: '',
+  };
+
+  private myProfile: MyProfile;
 
   constructor(public platform: Platform,
               public params: NavParams,
-              public viewCtrl: ViewController) {
-    this.firstName = params.get("firstName");
-    this.lastName = params.get("lastName");
-    this.level = params.get("level");
-    this.major = params.get("major");
-    this.interests = params.get("interests");
-    this.bio = params.get("bio");
+              public viewCtrl: ViewController,
+              private userService: UserService,
+              private appState: AppState,
+              private nav: NavController) {
+    this.userInfo.firstName = params.get("firstName");
+    this.userInfo.lastName = params.get("lastName");
+    this.userInfo.level = params.get("level");
+    this.userInfo.major = params.get("major");
+    this.userInfo.interests = params.get("interests");
+    this.userInfo.bio = params.get("bio");
+    this.myProfile = params.get("myProfile");
   }
 
   public save() {
-    this.viewCtrl.dismiss(this.data);
+    this.viewCtrl.dismiss(null);
+
   }
 
   public dismiss() {
@@ -33,6 +46,11 @@ export class EditProfileModal {
   }
 
   public submitEditUser() {
-
+    this.appState.setIsLoading(true);
+    this.userService.updateUser(this.userInfo).then(res => {
+      this.appState.setIsLoading(false);
+      this.myProfile.updateView(this.userInfo);
+      this.dismiss();
+    }).catch(err => this.appState.handleError(err));
   }
 }

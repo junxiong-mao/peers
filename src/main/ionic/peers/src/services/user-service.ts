@@ -19,14 +19,20 @@ export class UserService {
 
   public getUser(userId?: string): Promise<any> {
     return this.auth.getIDToken().toPromise().then(token => {
-      let params: any = {};
-      params.id = userId ? userId : -1;
-      const additionalParams = {
-        headers: {
-          Authorization: token
-        }
+      let params: any = {
+        Authorization: token
       };
-      return this.apigClient.getUserInfo(params, null, additionalParams);
+      params.id = userId ? userId : -1;
+      return this.apigClient.getUserInfo(params, null);
     });
+  }
+
+  public updateUser(userInfo: any): Promise<any> {
+    return this.auth.getIDToken().toPromise().then(token => {
+      let params = {
+        Authorization: token
+      }
+      return this.apigClient.updateUser(params, JSON.stringify(userInfo));
+    })
   }
 }

@@ -8,19 +8,19 @@
 </ion-header>
 
 <ion-content>
-  <form #addForm="ngForm" (submit)="save($event)" novalidate>
+  <form  (ngSubmit)="submitEditUser()">
     <ion-list>
       <ion-item>
         <ion-label>First name</ion-label>
-        <ion-input [(ngModel)]="firstName" name="firstName" #title="ngModel" type="text" required autofocus text-right></ion-input>
+        <ion-input [(ngModel)]="userInfo.firstName" name="userInfo.firstName" type="text" required autofocus text-right></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Last name</ion-label>
-        <ion-input [(ngModel)]="lastName" name="lastName" #title="ngModel" type="text" required text-right></ion-input>
+        <ion-input [(ngModel)]="userInfo.lastName" name="userInfo.lastName" type="text" required text-right></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Level</ion-label>
-        <ion-select [(ngModel)]="level" name="level">
+        <ion-select [(ngModel)]="userInfo.level" name="userInfo.level">
           <ion-option value="undergrad">undergraduate</ion-option>
           <ion-option value="master">master</ion-option>
           <ion-option value="phd">phd</ion-option>
@@ -28,20 +28,19 @@
       </ion-item>
       <ion-item>
         <ion-label>Major</ion-label>
-        <ion-input [(ngModel)]="major" name="major" #title="ngModel" type="text" required text-right></ion-input>
+        <ion-input [(ngModel)]="userInfo.major" name="userInfo.major" type="text" required text-right></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Interests</ion-label>
-        <ion-input [(ngModel)]="interests" name="interests" #title="ngModel" type="text" required text-right></ion-input>
-
+        <ion-input [(ngModel)]="userInfo.interests" name="userInfo.interests" type="text" required text-right></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Bio</ion-label>
-        <ion-textarea [(ngModel)]="bio" name="bio" #title="ngModel" type="text" required rows="6" text-right></ion-textarea>
+        <ion-textarea [(ngModel)]="userInfo.bio" name="userInfo.bio" type="text" required rows="6" text-right></ion-textarea>
       </ion-item>
     </ion-list>
     <div padding>
-      <button ion-button block large type="submit" (click)="submitEditUser()">Submit</button>
+      <button ion-button block large type="submit" >Submit</button>
     </div>
   </form>
 </ion-content>

@@ -15,7 +15,6 @@ export class MyProfile implements OnInit, OnDestroy {
 
   constructor(private userService: UserService,
               private appState: AppState,
-              private alertCtrl: AlertController,
               private modalCtrl: ModalController) {
   }
 
@@ -31,8 +30,17 @@ export class MyProfile implements OnInit, OnDestroy {
   }
 
   editProfile() {
-    console.log("editProfile");
-    let profileModal = this.modalCtrl.create(EditProfileModal, this.user);
+    let data:any = this.user;
+    data.myProfile = this;
+    let profileModal = this.modalCtrl.create(EditProfileModal, data);
     profileModal.present();
   }
+
+  updateView(userInfo) {
+    userInfo.id = this.user.id;
+    userInfo.email = this.user.email;
+    userInfo.photoUrl = this.user.photoUrl;
+    this.user = userInfo;
+  }
+
 }
