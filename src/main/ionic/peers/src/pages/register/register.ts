@@ -14,7 +14,7 @@ export class RegisterPage {
 
   // bio: max length 500 chars
   // interests: "A_B_C"
-  // except for email, all other attributes must be prefixed with custom:
+  // except for email, all other attributes must be prefixed with "custom:"
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private http: HttpClient) { }
 

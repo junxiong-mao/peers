@@ -4,8 +4,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="login-content" padding>
-  <div class="login-box">
+<ion-content class="signup-content" padding>
+  <div class="singup-box">
 
     <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
@@ -66,7 +66,7 @@
         <ion-col class="signup-col" col-md-6 offset-md-3>
           <h2>Interests</h2>
           <ion-item>
-            <tag-input name="interests" [(ngModel)]='registerCredentials.interests' [onlyFromAutocomplete]="true">
+            <tag-input name="interests" [(ngModel)]='registerCredentials.interests' required [onlyFromAutocomplete]="true">
               <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems"></tag-input-dropdown>
             </tag-input>
           </ion-item>
@@ -87,7 +87,7 @@
           <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
         </ion-col>
       </ion-row>
-    </form>
 
+    </form>
   </div>
 </ion-content>

@@ -105,6 +105,7 @@ export class AuthService {
   }
 
   public register(credentials) {
+    console.log(credentials);
     let attributeList = [];
     let dataEmail = {
       Name: 'email',
