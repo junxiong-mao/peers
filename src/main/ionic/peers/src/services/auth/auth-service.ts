@@ -105,7 +105,6 @@ export class AuthService {
   }
 
   public register(credentials) {
-    console.log(credentials);
     let attributeList = [];
     let dataEmail = {
       Name: 'email',
@@ -143,8 +142,6 @@ export class AuthService {
     let attributeLevel = new AWSCognito.CognitoUserAttribute(dataLevel);
     let attributeBio = new AWSCognito.CognitoUserAttribute(dataBio);
     let attributeInterests = new AWSCognito.CognitoUserAttribute(dataInterests);
-
-    console.log(attributeLastName);
 
     attributeList.push(attributeEmail);
     attributeList.push(attributeFirstName);
