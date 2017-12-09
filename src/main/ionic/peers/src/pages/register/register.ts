@@ -12,7 +12,7 @@ export class RegisterPage {
   createSuccess = false;
   registerCredentials = { email: '', password: '', confirm_password: '', firstName: '', lastName: '', major: '', level: '', bio: '', interests: [], };
 
-  interests_list;
+  interestsList;
 
   // bio: max length 500 chars
   // interests: "A_B_C"
@@ -22,7 +22,7 @@ export class RegisterPage {
 
   ngOnInit(): void {
     const url = `${location.origin}/assets/academic-interests.json`;
-    this.interests_list = this.http.get(url);
+    this.interestsList = this.http.get(url);
   }
 
   public register() {
@@ -63,7 +63,7 @@ export class RegisterPage {
   }
 
   public requestAutocompleteItems = (text: string) : Observable<Response> => {
-    return this.interests_list;
+    return this.interestsList;
   }
 
 }
