@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams, Platform, ViewController} from 'ionic-angular';
+import {NavParams, Platform, ViewController} from 'ionic-angular';
 import {UserService} from "../../services/user-service";
 import {AppState} from "../../states/app-state";
 import { MyProfile } from "../../pages/my-profile/my-profile";
+import {UserState} from "../../states/user-state";
 
 @Component({
   selector: 'edit-profile-modal',
@@ -26,7 +27,7 @@ export class EditProfileModal {
               public viewCtrl: ViewController,
               private userService: UserService,
               private appState: AppState,
-              private nav: NavController) {
+              private userState: UserState) {
     this.userInfo.firstName = params.get("firstName");
     this.userInfo.lastName = params.get("lastName");
     this.userInfo.level = params.get("level");
@@ -38,7 +39,6 @@ export class EditProfileModal {
 
   public save() {
     this.viewCtrl.dismiss(null);
-
   }
 
   public dismiss() {
@@ -46,11 +46,8 @@ export class EditProfileModal {
   }
 
   public submitEditUser() {
-    this.appState.setIsLoading(true);
-    this.userService.updateUser(this.userInfo).then(res => {
-      this.appState.setIsLoading(false);
-      this.myProfile.updateView(this.userInfo);
-      this.dismiss();
-    }).catch(err => this.appState.handleError(err));
+    this.userState.updateUser(this.userInfo);
+    this.dismiss();
+
   }
 }

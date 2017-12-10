@@ -20,14 +20,12 @@ export class CardsService {
     });
   }
 
-  public getCards(/*interests: Array<String>*/): Promise<any> {
+  public getCards(interests: Array<String>): Promise<any> {
     return this.auth.getIDToken().toPromise().then(token => {
-      let interests = ['AI'];
       let params = {
         interests: interests,
         Authorization: token
       };
-      console.log(token);
       return this.apigClient.getCards(params, null);
     })
   }
