@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from "../../models/user";
-import { UserService } from "../../services/user-service";
-import { AppState } from "../../states/app-state";
-import { AlertController, ModalController } from "ionic-angular";
+import { ModalController } from "ionic-angular";
 import { EditProfileModal } from "../../components/edit-profile-modal/edit-profile-modal";
 import {UserState} from "../../states/user-state";
 import {Subscription} from "rxjs/Subscription";
@@ -16,9 +14,7 @@ export class MyProfile implements OnInit, OnDestroy {
   user: User;
   private userSubscription: Subscription;
 
-  constructor(private userService: UserService,
-              private appState: AppState,
-              private modalCtrl: ModalController,
+  constructor(private modalCtrl: ModalController,
               private userState: UserState) {
   }
 
