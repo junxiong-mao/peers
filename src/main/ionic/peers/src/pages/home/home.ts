@@ -8,6 +8,7 @@ import { AppState } from "../../states/app-state";
 import { ENV } from "@app/env";
 
 import { StackConfig } from 'angular2-swing';
+import {UserState} from "../../states/user-state";
 
 @Component({
   selector: 'page-home',
@@ -26,7 +27,8 @@ export class HomePage implements OnInit, OnDestroy {
               private cardsState: CardsState,
               private appState: AppState,
               private userService: UserService,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private userState: UserState) {
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
         return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
@@ -42,7 +44,9 @@ export class HomePage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isDev = ENV.mode == 'Development' && location.origin.indexOf('localhost') !== -1;
-    this.cardsState.initialize();
+    this.userState.initialize().then(() => {
+      this.cardsState.initialize();
+    })
     this.cardsSubscription = this.cardsState.currentCard.subscribe(
       currentCard => {
         this.cards.pop();

@@ -24,6 +24,7 @@ import { AuthService } from '../services/auth/auth-service';
 
 import { HttpClientModule } from "@angular/common/http";
 import { ENV } from "@app/env";
+import {UserState} from "../states/user-state";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ENV } from "@app/env";
     AppState,
     CardsState,
     CardsService,
+    UserState,
     {provide: AuthService, useClass: ENV.auth},
     //AuthService
   ]

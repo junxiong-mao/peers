@@ -86,18 +86,36 @@ apigClientFactory.newClient = function (config) {
     apigClient.getUserInfo = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
 
-        apiGateway.core.utils.assertParametersDefined(params, ['id', 'body'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['Authorization', 'body', 'id'], ['body']);
 
         var apiV1UsersGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/api/v1/users').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
-            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['id', ]),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization', ]),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['id']),
             body: body
         };
 
 
         return apiGatewayClient.makeRequest(apiV1UsersGetRequest, authType, additionalParams, config.apiKey);
+    };
+
+
+    apigClient.updateUser = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+
+        var apiV1UsersPostRequest = {
+            verb: 'post'.toUpperCase(),
+            path: pathComponent + uritemplate('/api/v1/users').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+
+
+        return apiGatewayClient.makeRequest(apiV1UsersPostRequest, authType, additionalParams, config.apiKey);
     };
 
 
@@ -109,7 +127,7 @@ apigClientFactory.newClient = function (config) {
         var apiV1UsersOptionsRequest = {
             verb: 'options'.toUpperCase(),
             path: pathComponent + uritemplate('/api/v1/users').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
@@ -122,12 +140,13 @@ apigClientFactory.newClient = function (config) {
     apigClient.getCards = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
 
-        apiGateway.core.utils.assertParametersDefined(params, ['interests', 'body'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['interests', 'Authorization', 'body'], ['body']);
+
         var apiV1UsersCardsGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/api/v1/users/cards').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
-            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['interests']),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization', ]),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['interests', ]),
             body: body
         };
 
@@ -157,12 +176,12 @@ apigClientFactory.newClient = function (config) {
     apigClient.postDecision = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
 
-        apiGateway.core.utils.assertParametersDefined(params, ['type', 'id', 'body'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['type', 'id', 'Authorization', 'body'], ['body']);
 
         var apiV1UsersCardsDecisionGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/api/v1/users/cards/decision').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization', ]),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, ['type', 'id', ]),
             body: body
         };
@@ -193,12 +212,12 @@ apigClientFactory.newClient = function (config) {
     apigClient.getMatchHistory = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
 
-        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['Authorization'], ['body']);
 
         var apiV1UsersMatchesGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/api/v1/users/matches').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
