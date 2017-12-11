@@ -151,15 +151,28 @@ export class AuthService {
     attributeList.push(attributeLevel);
     attributeList.push(attributeMajor);
 
+    let success = false;
+
     userPool.signUp(credentials.email, credentials.password, attributeList, null, (err, result) => {
       if (err) {
         console.log(err);
         return;
+      } else{
+        success = true;
       }
-    })
-    return Observable.create(observer => {
-      observer.next(true);
-      observer.complete();
     });
+
+    if (success){
+      return Observable.create(observer => {
+        observer.next(true);
+        observer.complete();
+      });
+    } else {
+      return Observable.create(observer => {
+        observer.next(null);
+        observer.complete();
+      });
+    }
+
   }
 }
