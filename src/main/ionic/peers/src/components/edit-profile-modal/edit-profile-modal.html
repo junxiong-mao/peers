@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()" strong>Close</button>
+    </ion-buttons>
+    <ion-title>Edit user</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form  (ngSubmit)="submitEditUser()">
+    <ion-list>
+      <ion-item>
+        <ion-label>First name</ion-label>
+        <ion-input [(ngModel)]="userInfo.firstName" name="userInfo.firstName" type="text" required autofocus text-right></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Last name</ion-label>
+        <ion-input [(ngModel)]="userInfo.lastName" name="userInfo.lastName" type="text" required text-right></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Level</ion-label>
+        <ion-select [(ngModel)]="userInfo.level" name="userInfo.level">
+          <ion-option value="undergrad">undergraduate</ion-option>
+          <ion-option value="master">master</ion-option>
+          <ion-option value="phd">phd</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Major</ion-label>
+        <ion-input [(ngModel)]="userInfo.major" name="userInfo.major" type="text" required text-right></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Interests</ion-label>
+        <ion-input [(ngModel)]="userInfo.interests" name="userInfo.interests" type="text" required text-right></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Bio</ion-label>
+        <ion-textarea [(ngModel)]="userInfo.bio" name="userInfo.bio" type="text" required rows="6" text-right></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <button ion-button block large type="submit" >Submit</button>
+    </div>
+  </form>
+</ion-content>

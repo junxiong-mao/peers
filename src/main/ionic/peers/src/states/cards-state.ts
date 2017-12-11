@@ -4,6 +4,7 @@ import { CardsService } from "../services/cards-service";
 import { Injectable } from "@angular/core";
 import { Card } from "../models/card";
 import { AppState } from "./app-state";
+import {UserState} from "./user-state";
 
 @Injectable()
 export class CardsState {
@@ -16,7 +17,9 @@ export class CardsState {
 
   //todo: add isFlipped card state
 
-  constructor(private cardsService: CardsService, private appState: AppState) {
+  constructor(private cardsService: CardsService,
+              private appState: AppState,
+              private userState: UserState) {
     this.currentCardSubject = new BehaviorSubject(new Card(null, null, null, [], null));
     this.currentCard = this.currentCardSubject.asObservable();
     this.isMatchSubject = new BehaviorSubject(false);
@@ -24,9 +27,8 @@ export class CardsState {
   }
 
   public initialize() {
-    // this.isErrorSubject.next(false);
     this.appState.setIsLoading(true);
-    this.cardsService.getCards()
+    this.cardsService.getCards(this.userState.user.interests)
       .then(response => {
         this.appState.setIsLoading(false);
         this.cards = response.data;
