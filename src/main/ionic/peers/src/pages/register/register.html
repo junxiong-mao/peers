@@ -7,7 +7,7 @@
 <ion-content class="signup-content" padding>
   <div class="singup-box">
 
-    <form (ngSubmit)="register()" #registerForm="ngForm">
+    <form (ngSubmit)="register()" #registerForm="ngForm" class="register-form">
       <ion-row>
         <ion-col col-md-6 offset-md-3>
 
@@ -17,15 +17,15 @@
           <ion-list inset>
 
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input data-test="email" type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input data-test="password" type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input type="password" placeholder="Confirm Password" name="confirm_password" [(ngModel)]="registerCredentials.confirm_password" required></ion-input>
+              <ion-input data-test="confirm_password" type="password" placeholder="Confirm Password" name="confirm_password" [(ngModel)]="registerCredentials.confirm_password" required></ion-input>
             </ion-item>
 
           </ion-list>
@@ -42,19 +42,19 @@
             <ion-list inset>
 
               <ion-item>
-                <ion-input type="text" placeholder="First Name" name="firstName" [(ngModel)]="registerCredentials.firstName" required></ion-input>
+                <ion-input data-test="firstName" type="text" placeholder="First Name" name="firstName" [(ngModel)]="registerCredentials.firstName" required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-input type="text" placeholder="Last Name" name="lastName" [(ngModel)]="registerCredentials.lastName" required></ion-input>
+                <ion-input data-test="lastName" type="text" placeholder="Last Name" name="lastName" [(ngModel)]="registerCredentials.lastName" required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-input type="text" placeholder="Major" name="major" [(ngModel)]="registerCredentials.major" required></ion-input>
+                <ion-input data-test="major" type="text" placeholder="Major" name="major" [(ngModel)]="registerCredentials.major" required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-input type="text" placeholder="Level" name="level" [(ngModel)]="registerCredentials.level" required></ion-input>
+                <ion-input data-test="level" type="text" placeholder="Level" name="level" [(ngModel)]="registerCredentials.level" required></ion-input>
               </ion-item>
 
             </ion-list>
@@ -66,7 +66,11 @@
         <ion-col class="signup-col" col-md-6 offset-md-3>
           <h2>Interests</h2>
           <ion-item>
-            <tag-input name="interests" [(ngModel)]='registerCredentials.interests' required [onlyFromAutocomplete]="true">
+            <tag-input data-test="interests"
+                       name="interests"
+                       secondaryPlaceholder = "Enter your interests"
+                       [(ngModel)]='registerCredentials.interests' required
+                       [onlyFromAutocomplete]="true">
               <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems"></tag-input-dropdown>
             </tag-input>
           </ion-item>
@@ -77,14 +81,14 @@
         <ion-col class="signup-col" col-md-6 offset-md-3>
           <h2>Bio</h2>
           <ion-item>
-            <ion-textarea type="text" maxlength="500" placeholder="Bio(500 characters maximum)" name="bio" [(ngModel)]="registerCredentials.bio" required></ion-textarea>
+            <ion-textarea data-test="bio" type="text" maxlength="500" placeholder="Bio(500 characters maximum)" name="bio" [(ngModel)]="registerCredentials.bio" required></ion-textarea>
           </ion-item>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col class="signup-col" col-md-6 offset-md-3>
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
+          <button data-test="submit-button" ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Register</button>
         </ion-col>
       </ion-row>
 
