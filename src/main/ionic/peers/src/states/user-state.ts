@@ -29,6 +29,7 @@ export class UserState {
   }
   public updateUser(user) {
     this.appState.setIsLoading(true);
+    user.interests = user.interests.split(',');
     this.userService.updateUser(user).then(res => {
       this.appState.setIsLoading(false);
       user.id = this.user.id;
