@@ -39,7 +39,7 @@ import {UserState} from "../states/user-state";
     IonicModule.forRoot(MyApp),
     SwingModule,
     IonicImageViewerModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

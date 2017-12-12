@@ -8,6 +8,7 @@ import { MyProfile } from "../pages/my-profile/my-profile";
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from "../services/auth/auth-service";
 
+
 @Component({
   templateUrl: 'app.html'
 })
