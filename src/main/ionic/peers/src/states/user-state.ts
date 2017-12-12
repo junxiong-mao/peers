@@ -29,12 +29,8 @@ export class UserState {
   }
   public updateUser(user) {
     this.appState.setIsLoading(true);
-    user.interests = user.interests.split(',');
     this.userService.updateUser(user).then(res => {
       this.appState.setIsLoading(false);
-      user.id = this.user.id;
-      user.email = this.user.email;
-      user.photoUrl = this.user.photoUrl;
       this.user = user;
       this.currentUserSubject.next(this.user);
     }).catch(err => this.appState.handleError(err));
