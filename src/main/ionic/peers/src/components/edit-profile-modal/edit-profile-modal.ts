@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import {NavParams, Platform, ViewController} from 'ionic-angular';
-import {UserService} from "../../services/user-service";
-import {AppState} from "../../states/app-state";
 import { MyProfile } from "../../pages/my-profile/my-profile";
 import {UserState} from "../../states/user-state";
 
@@ -10,30 +8,15 @@ import {UserState} from "../../states/user-state";
   templateUrl: 'edit-profile-modal.html'
 })
 export class EditProfileModal {
-  data: any;
-  userInfo = {
-    firstName: '',
-    lastName: '',
-    level: '',
-    major: '',
-    interests: '',
-    bio: '',
-  };
+  userInfo: any;
 
   private myProfile: MyProfile;
 
   constructor(public platform: Platform,
               public params: NavParams,
               public viewCtrl: ViewController,
-              private userService: UserService,
-              private appState: AppState,
               private userState: UserState) {
-    this.userInfo.firstName = params.get("firstName");
-    this.userInfo.lastName = params.get("lastName");
-    this.userInfo.level = params.get("level");
-    this.userInfo.major = params.get("major");
-    this.userInfo.interests = params.get("interests");
-    this.userInfo.bio = params.get("bio");
+    this.userInfo = params.get('user');
     this.myProfile = params.get("myProfile");
   }
 
@@ -46,8 +29,8 @@ export class EditProfileModal {
   }
 
   public submitEditUser() {
+    this.userInfo.interests = this.userInfo.interests.split(',');
     this.userState.updateUser(this.userInfo);
     this.dismiss();
-
   }
 }

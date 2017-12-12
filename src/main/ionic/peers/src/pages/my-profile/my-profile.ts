@@ -28,7 +28,8 @@ export class MyProfile implements OnInit, OnDestroy {
   }
 
   editProfile() {
-    let data:any = this.user;
+    let data: any = {};
+    data.user = Object.assign({}, this.user);
     data.myProfile = this;
     let profileModal = this.modalCtrl.create(EditProfileModal, data);
     profileModal.present();
