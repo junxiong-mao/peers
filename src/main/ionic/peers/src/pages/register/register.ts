@@ -35,7 +35,8 @@ export class RegisterPage {
             this.createSuccess = true;
             this.showPopup("Success", "Account created.");
           } else {
-            this.showPopup("Error", status.toString());
+            console.log(status);
+            this.showPopup("Error", this.convertErrorMessage(status.toString()));
           }
         },
         error => {
@@ -64,6 +65,27 @@ export class RegisterPage {
 
   public requestAutocompleteItems = (text: string) : Observable<Response> => {
     return this.interestsList;
+  }
+
+  public convertErrorMessage(err: string){
+    let userFriendly = "";
+    if(err.search("Member must have length greater than or equal to 6") != -1 || err.search("Password did not conform with policy") != -1){
+      userFriendly = "Password must be 8 characters including one uppercase letter, one lowercase letter and one special character!"
+    }
+
+    else if(err.search("UCSD") != -1){
+      userFriendly = "Sorry, Peers is only available to UCSD community members for now!"
+    }
+
+    else if(err.search("Invalid email address format") != -1){
+      userFriendly = "Invalid email address format!"
+    }
+
+    else{
+      userFriendly = "Problem creating account!"
+    }
+
+    return userFriendly;
   }
 
 }

@@ -65,8 +65,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     CardsState,
     CardsService,
     UserState,
-    {provide: AuthService, useClass: ENV.auth},
-    //AuthService
+    //{provide: AuthService, useClass: ENV.auth},
+    AuthService
   ]
 })
 export class AppModule {
