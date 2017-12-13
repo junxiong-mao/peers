@@ -83,9 +83,9 @@ export class AuthService {
     return Observable.create(observer => {
       if (currentUser) {
         currentUser.signOut();
-        observer.next(true);
-      } else {
         observer.next(false);
+      } else {
+        observer.next(true);
       }
       observer.complete();
     })
