@@ -39,22 +39,30 @@
           <h2>Basic Info</h2>
 
           <ion-card>
-            <ion-list inset>
+            <ion-list>
 
               <ion-item>
-                <ion-input data-test="firstName" type="text" placeholder="First Name" name="firstName" [(ngModel)]="registerCredentials.firstName" required></ion-input>
+                <ion-label>First name</ion-label>
+                <ion-input data-test="firstName" type="text" name="firstName" [(ngModel)]="registerCredentials.firstName" required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-input data-test="lastName" type="text" placeholder="Last Name" name="lastName" [(ngModel)]="registerCredentials.lastName" required></ion-input>
+                <ion-label>Last name</ion-label>
+                <ion-input data-test="lastName" type="text" name="lastName" [(ngModel)]="registerCredentials.lastName" required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-input data-test="major" type="text" placeholder="Major" name="major" [(ngModel)]="registerCredentials.major" required></ion-input>
+                <ion-label>Major</ion-label>
+                <ion-input data-test="major" type="text" name="major" [(ngModel)]="registerCredentials.major" required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-input data-test="level" type="text" placeholder="Level" name="level" [(ngModel)]="registerCredentials.level" required></ion-input>
+                <ion-label>Level</ion-label>
+                <ion-select [(ngModel)]="registerCredentials.level" name="level" required>
+                  <ion-option value="undergrad">undergraduate</ion-option>
+                  <ion-option value="master">master</ion-option>
+                  <ion-option value="phd">phd</ion-option>
+                </ion-select>
               </ion-item>
 
             </ion-list>
