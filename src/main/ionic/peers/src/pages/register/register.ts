@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, IonicPage } from 'ionic-angular';
+import { AlertController, IonicPage, NavController } from 'ionic-angular';
 import { AuthService } from '../../services/auth/auth-service';
 import { Observable } from 'rxjs/Observable';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'page-register',
