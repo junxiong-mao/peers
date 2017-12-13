@@ -30,12 +30,12 @@ export class RegisterPage {
       this.showPopup("Error", "Passwords must be the same.");
     } else {
 
-      this.auth.register(this.registerCredentials).subscribe(success => {
-          if (success) {
+      this.auth.register(this.registerCredentials).subscribe(status => {
+          if (status == true) {
             this.createSuccess = true;
             this.showPopup("Success", "Account created.");
           } else {
-            this.showPopup("Error", "Problem creating account.");
+            this.showPopup("Error", status.toString());
           }
         },
         error => {
