@@ -4,13 +4,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { MyProfile } from "../pages/my-profile/my-profile";
+import { RegisterPage } from "../pages/register/register";
 import { LoginPage } from '../pages/login/login';
+import { MyProfile } from "../pages/my-profile/my-profile";
+
 import { AuthService } from "../services/auth/auth-service";
+import 'rxjs/add/operator/filter'; // imported for tag-input to work
+import 'rxjs/add/operator/debounceTime'; // imported for tag-input to work
 
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
@@ -36,7 +41,8 @@ export class MyApp {
     this.pages = [
       {title: 'Home', component: HomePage},
       {title: 'My Profile', component: MyProfile},
-      {title: 'Login', component: LoginPage}
+      {title: 'Login', component: LoginPage},
+      {title: 'Register', component: RegisterPage}
     ];
 
   }

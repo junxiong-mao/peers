@@ -110,17 +110,69 @@ export class AuthService {
       Name: 'email',
       Value: credentials.email
     };
+    let dataFirstName = {
+      Name: 'custom:firstName',
+      Value: credentials.firstName
+    };
+    let dataLastName = {
+      Name: 'custom:lastName',
+      Value: credentials.lastName
+    };
+    let dataMajor = {
+      Name: 'custom:major',
+      Value: credentials.major
+    };
+    let dataLevel  = {
+      Name: 'custom:level',
+      Value: credentials.level
+    };
+    let dataBio = {
+      Name: 'custom:bio',
+      Value: credentials.bio
+    };
+    let dataInterests = {
+      Name: 'custom:interests',
+      Value: credentials.interests.map(o => o.value).join('_')
+    };
+
     let attributeEmail = new AWSCognito.CognitoUserAttribute(dataEmail);
+    let attributeFirstName = new AWSCognito.CognitoUserAttribute(dataFirstName);
+    let attributeLastName = new AWSCognito.CognitoUserAttribute(dataLastName);
+    let attributeMajor = new AWSCognito.CognitoUserAttribute(dataMajor);
+    let attributeLevel = new AWSCognito.CognitoUserAttribute(dataLevel);
+    let attributeBio = new AWSCognito.CognitoUserAttribute(dataBio);
+    let attributeInterests = new AWSCognito.CognitoUserAttribute(dataInterests);
+
     attributeList.push(attributeEmail);
+    attributeList.push(attributeFirstName);
+    attributeList.push(attributeLastName);
+    attributeList.push(attributeBio);
+    attributeList.push(attributeInterests);
+    attributeList.push(attributeLevel);
+    attributeList.push(attributeMajor);
+
+    let success = false;
+
     userPool.signUp(credentials.email, credentials.password, attributeList, null, (err, result) => {
       if (err) {
         console.log(err);
         return;
+      } else{
+        success = true;
       }
-    })
-    return Observable.create(observer => {
-      observer.next(true);
-      observer.complete();
     });
+
+    if (success){
+      return Observable.create(observer => {
+        observer.next(true);
+        observer.complete();
+      });
+    } else {
+      return Observable.create(observer => {
+        observer.next(null);
+        observer.complete();
+      });
+    }
+
   }
 }

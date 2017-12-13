@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MyProfile } from "../pages/my-profile/my-profile";
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from "../pages/register/register";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,12 +27,16 @@ import { HttpClientModule } from "@angular/common/http";
 import { ENV } from "@app/env";
 import {UserState} from "../states/user-state";
 
+import { TagInputModule } from 'ng2-tag-input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     MyProfile,
     LoginPage,
+    RegisterPage,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,9 @@ import {UserState} from "../states/user-state";
     IonicModule.forRoot(MyApp),
     SwingModule,
     IonicImageViewerModule,
-    HttpClientModule
+    HttpClientModule,
+    TagInputModule,
+    BrowserAnimationsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,6 +54,7 @@ import {UserState} from "../states/user-state";
     HomePage,
     MyProfile,
     LoginPage,
+    RegisterPage,
   ],
   providers: [
     StatusBar,

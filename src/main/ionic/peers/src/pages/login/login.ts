@@ -3,6 +3,7 @@ import { NavController, AlertController} from 'ionic-angular';
 import { AuthService } from '../../services/auth/auth-service';
 import { AppState } from "../../states/app-state";
 import { HomePage } from "../home/home";
+import { RegisterPage } from "../register/register";
 
 @Component({
   selector: 'page-login',
@@ -23,7 +24,7 @@ export class LoginPage {
   }
 
   public createAccount() {
-    this.nav.push('RegisterPage');
+    this.nav.push(RegisterPage);
   }
 
   public login() {
