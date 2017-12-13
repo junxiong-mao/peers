@@ -12,10 +12,6 @@ describe('Register', function () {
       cy.get('[data-test=password]').should('have.attr', 'placeholder', 'Password');
       cy.get('[data-test=confirm_password]').should('have.attr', 'placeholder', 'Confirm Password');
 
-      cy.get('[data-test=firstName]').should('have.attr', 'placeholder', 'First Name');
-      cy.get('[data-test=lastName]').should('have.attr', 'placeholder', 'Last Name');
-      cy.get('[data-test=major]').should('have.attr', 'placeholder', 'Major');
-      cy.get('[data-test=level]').should('have.attr', 'placeholder', 'Level');
       cy.get('[data-test=interests]').should('have.attr', 'secondaryPlaceholder', 'Enter your interests');
       cy.get('[data-test=bio]').should('have.attr', 'placeholder', 'Bio(500 characters maximum)');
     });
@@ -33,7 +29,11 @@ describe('Register', function () {
     cy.get('.register-form').find('input[name="firstName"]').type('Danbing').should('have.value', 'Danbing');
     cy.get('.register-form').find('input[name="lastName"]').type('Zhu').should('have.value', 'Zhu');
     cy.get('.register-form').find('input[name="major"]').type('CE').should('have.value', 'CE');
-    cy.get('.register-form').find('input[name="level"]').type('MS').should('have.value', 'MS');
+
+    cy.get('.register-form').find('ion-select[name="level"]').click();
+    cy.get('.alert-wrapper').contains('Master').click();
+    cy.contains('OK').click();
+    cy.get('.register-form').find('ion-select[name="level"]').contains('Master');
 
     cy.get('.register-form').get('input[aria-label="Enter your interests"]').type('software');
     cy.wait(1000);
@@ -57,7 +57,11 @@ describe('Register', function () {
     cy.get('.register-form').find('input[name="firstName"]').type('Danbing').should('have.value', 'Danbing');
     cy.get('.register-form').find('input[name="lastName"]').type('Zhu').should('have.value', 'Zhu');
     cy.get('.register-form').find('input[name="major"]').type('CE').should('have.value', 'CE');
-    cy.get('.register-form').find('input[name="level"]').type('MS').should('have.value', 'MS');
+
+    cy.get('.register-form').find('ion-select[name="level"]').click();
+    cy.get('.alert-wrapper').contains('PhD').click();
+    cy.contains('OK').click();
+    cy.get('.register-form').find('ion-select[name="level"]').contains('PhD');
 
     cy.get('.register-form').get('input[aria-label="Enter your interests"]').type('software');
     cy.wait(1000);
