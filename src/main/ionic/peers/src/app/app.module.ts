@@ -28,7 +28,7 @@ import { ENV } from "@app/env";
 import {UserState} from "../states/user-state";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatChipsModule, MatFormFieldModule, MatIconModule } from "@angular/material";
+import { MatAutocompleteModule, MatChipsModule, MatFormFieldModule, MatIconModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -49,6 +49,7 @@ import { MatChipsModule, MatFormFieldModule, MatIconModule } from "@angular/mate
     MatIconModule,
     MatChipsModule,
     MatFormFieldModule,
+    MatAutocompleteModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
