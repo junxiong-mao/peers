@@ -5,6 +5,7 @@ import { EditProfileModal } from "./edit-profile-modal/edit-profile-modal";
 import { MatAutocompleteModule, MatChipsModule, MatFormFieldModule, MatIconModule } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ChipInputComponent } from "./chip-input/chip-input";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ChipInputComponent } from "./chip-input/chip-input";
     EditProfileModal,
   ],
   imports: [
+    HttpClientModule,
     IonicModule,
     BrowserAnimationsModule,
     MatIconModule,

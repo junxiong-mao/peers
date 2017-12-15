@@ -33,6 +33,8 @@ export class ChipInputComponent implements OnInit {
   onIllegalInput = new EventEmitter<string>();
 
   inputValue = '';
+
+  @Input()
   chips = [];
 
   @Output() onValueChange = new EventEmitter();
@@ -42,6 +44,7 @@ export class ChipInputComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     if (this.inputValue.length === 0 || this.options.indexOf(this.inputValue) < 0 || this.chips.indexOf(this.inputValue) >= 0) {
       if (this.inputValue.length > 0) {
+        console.log('erer', this.inputValue);
         this.onIllegalInput.emit('You can only add items from the list');
       }
     } else {
@@ -63,7 +66,6 @@ export class ChipInputComponent implements OnInit {
       this.onValueChange.emit(this.chips);
     }
   }
-
 
   filter(val: string): string[] {
     return this.options.filter(option => {

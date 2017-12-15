@@ -31,8 +31,7 @@
         <ion-input [(ngModel)]="userInfo.major" name="userInfo.major" type="text" required text-right></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Interests</ion-label>
-        <ion-input [(ngModel)]="userInfo.interests" name="userInfo.interests" type="text" required text-right></ion-input>
+        <chip-input placeholder="Interests" [options]="interestsList" [chips]="userInfo.interests" (onValueChange)="handleInterestsValueChange($event)" (onIllegalInput)="handleIllegalInterestInput($event)"></chip-input>
       </ion-item>
       <ion-item>
         <ion-label>Bio</ion-label>

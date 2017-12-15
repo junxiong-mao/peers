@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, IonicPage, NavController } from 'ionic-angular';
 import { AuthService } from '../../services/auth/auth-service';
 import { HttpClient } from "@angular/common/http";
@@ -8,7 +8,7 @@ import { AppState } from "../../states/app-state";
   selector: 'page-register',
   templateUrl: 'register.html',
 })
-export class RegisterPage {
+export class RegisterPage implements OnInit {
   createSuccess = false;
   registerCredentials = {
     email: '',
