@@ -66,8 +66,10 @@ export class ChipInputComponent implements OnInit {
 
 
   filter(val: string): string[] {
-    return this.options.filter(option =>
-      option.toLowerCase().indexOf(val.toLowerCase()) === 0);
+    return this.options.filter(option => {
+      if (this.inputValue === '') return false;
+      return option.toLowerCase().indexOf(val.toLowerCase()) === 0
+    });
   }
 
   ngOnInit(): void {
