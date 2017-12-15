@@ -28,6 +28,7 @@ import { ENV } from "@app/env";
 import {UserState} from "../states/user-state";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatChipsModule, MatFormFieldModule, MatIconModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IonicImageViewerModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatIconModule,
+    MatChipsModule,
+    MatFormFieldModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

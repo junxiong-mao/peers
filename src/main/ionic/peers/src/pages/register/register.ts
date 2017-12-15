@@ -3,6 +3,8 @@ import { AlertController, IonicPage, NavController } from 'ionic-angular';
 import { AuthService } from '../../services/auth/auth-service';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from "@angular/common/http";
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { MatChipInputEvent } from "@angular/material";
 
 @Component({
   selector: 'page-register',
@@ -13,6 +15,46 @@ export class RegisterPage {
   registerCredentials = { email: '', password: '', confirm_password: '', firstName: '', lastName: '', major: '', level: '', bio: '', interests: [], };
 
   interestsList;
+
+  visible: boolean = true;
+  selectable: boolean = true;
+  removable: boolean = true;
+  addOnBlur: boolean = true;
+
+  // Enter, comma
+  separatorKeysCodes = [ENTER, COMMA];
+
+  fruits = [
+    { name: 'Lemon' },
+    { name: 'Lime' },
+    { name: 'Apple' },
+  ];
+
+
+  add(event: MatChipInputEvent): void {
+    let input = event.input;
+    let value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.fruits.push({ name: value.trim() });
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(fruit: any): void {
+    let index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+
+
 
   // bio: max length 500 chars
   // interests: "A_B_C"

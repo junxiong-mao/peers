@@ -15,12 +15,14 @@
   },
   "dependencies": {
     "@angular/animations": "^5.1.1",
+    "@angular/cdk": "^5.0.1",
     "@angular/common": "^5.1.1",
     "@angular/compiler": "^5.1.1",
     "@angular/compiler-cli": "^5.1.1",
     "@angular/core": "^5.1.1",
     "@angular/forms": "^5.1.1",
     "@angular/http": "^5.1.1",
+    "@angular/material": "^5.0.1",
     "@angular/platform-browser": "^5.1.1",
     "@angular/platform-browser-dynamic": "^5.1.1",
     "@ionic-native/core": "4.3.2",
@@ -49,7 +51,8 @@
     "webpack": "^3.8.1"
   },
   "config": {
-    "ionic_webpack": "./config/webpack.config.js"
+    "ionic_webpack": "./config/webpack.config.js",
+    "ionic_copy": "./config/copy.config.js"
   },
   "description": "An Ionic project"
 }
