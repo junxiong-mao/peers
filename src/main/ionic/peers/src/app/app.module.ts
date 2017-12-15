@@ -27,7 +27,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ENV } from "@app/env";
 import {UserState} from "../states/user-state";
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
