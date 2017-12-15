@@ -105,6 +105,10 @@ export class AuthService {
   }
 
   public register(credentials) {
+    // bio: max length 500 chars
+    // interests: "A_B_C"
+    // except for email, all other attributes must be prefixed with "custom:"
+
     let attributeList = [];
     let dataEmail = {
       Name: 'email',

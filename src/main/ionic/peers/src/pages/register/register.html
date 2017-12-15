@@ -66,37 +66,7 @@
         <ion-col class="signup-col" col-md-6 offset-md-3>
           <h2>Interests</h2>
           <ion-item>
-            <!--<tag-input data-test="interests"-->
-                       <!--name="interests"-->
-                       <!--secondaryPlaceholder = "Enter your interests"-->
-                       <!--[(ngModel)]='registerCredentials.interests' required-->
-                       <!--[onlyFromAutocomplete]="true">-->
-              <!--<tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems"></tag-input-dropdown>-->
-            <!--</tag-input>-->
-
-            <mat-form-field class="demo-chip-list">
-              <mat-chip-list #chipList>
-                <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
-                          [removable]="removable" (remove)="remove(fruit)">
-                  {{fruit.name}}
-                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                </mat-chip>
-                <input matInput placeholder="New fruit..."
-                       [matChipInputFor]="chipList"
-                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                       [matChipInputAddOnBlur]="addOnBlur"
-                       (matChipInputTokenEnd)="add($event)"
-                       [formControl]="myControl" [matAutocomplete]="auto"
-                       [(ngModel)]="inputValue"
-                >
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="handleOptionSelected($event)">
-                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{ option }}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-chip-list>
-            </mat-form-field>
-
+            <chip-input [options]="interestsList" (onIllegalInput)="handleIllegalInterestInput($event)" (onValueChange)="handleInterestsValueChange($event)"></chip-input>
           </ion-item>
         </ion-col>
       </ion-row>
