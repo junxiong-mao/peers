@@ -84,7 +84,7 @@ export class HomePage implements OnInit, OnDestroy {
           let alert = this.alertCtrl.create({
             title: 'You have a match!',
             message: `
-              <img class="user-photo" src="${user.photoUrl}" />
+              <img class="user-photo" src="${user.photoUrl == '' ? 'https://i.pinimg.com/736x/45/18/61/4518617f909007087ef9cebbfcaec007--rock-painting-bonsai.jpg' : user.photoUrl}" />
               <h3>${this.capitalize(user.firstName)} ${this.capitalize(user.lastName)}</h3>
               <b>Major:</b><br/>
               <span class="major">${user.major}</span><br/><br/>
