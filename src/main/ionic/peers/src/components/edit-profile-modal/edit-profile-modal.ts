@@ -39,7 +39,6 @@ export class EditProfileModal implements OnInit {
   }
 
   public submitEditUser() {
-    this.userInfo.interests = this.userInfo.interests.split(',');
     this.userState.updateUser(this.userInfo);
     this.dismiss();
   }

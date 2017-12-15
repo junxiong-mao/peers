@@ -13,7 +13,7 @@ describe('Home Page', function () {
     //Given
 
     //When
-    cy.wait(500);
+    cy.wait(3000);
 
     //Then
     cy.get('.toolbar-title')
