@@ -31,15 +31,15 @@ export class AppState {
     this.loading.present();
   }
 
-  public handleError(error) {
+  public handleError(error, message?: string) {
     console.error('error', error);
     this.setIsLoading(false);
-    this.presentErrorToast();
+    this.presentErrorToast(message);
   }
 
-  presentErrorToast() {
+  presentErrorToast(message: string) {
     let toast = this.toastCtrl.create({
-      message: 'Oops, something went wrong. Please try again later.',
+      message: message || 'Oops, something went wrong. Please try again later.',
       duration: 60000,
       position: 'top',
       showCloseButton: true

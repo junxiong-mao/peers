@@ -16,7 +16,7 @@ describe('Register', function () {
       cy.get('[data-test=lastName]').should('have.attr', 'placeholder', 'Last Name');
       cy.get('[data-test=major]').should('have.attr', 'placeholder', 'Major');
       cy.get('[data-test=level]').should('have.attr', 'placeholder', 'Level');
-      cy.get('[data-test=interests]').should('have.attr', 'secondaryPlaceholder', 'Enter your interests');
+      cy.contains('Interests').should('be.visible');
       cy.get('[data-test=bio]').should('have.attr', 'placeholder', 'Bio(500 characters maximum)');
     });
 
@@ -35,10 +35,11 @@ describe('Register', function () {
     cy.get('.register-form').find('input[name="major"]').type('CE').should('have.value', 'CE');
     cy.get('.register-form').find('input[name="level"]').type('MS').should('have.value', 'MS');
 
-    cy.get('.register-form').get('input[aria-label="Enter your interests"]').type('software');
+    cy.get('.register-form').get('.mat-chip-input').type('software');
     cy.wait(1000);
-    cy.get('ng2-dropdown-menu').get('ng2-menu-item:first').get('div[role="button"]').click();
-    cy.get('.register-form').get('tag-input').get('div[title="Software engineering"]').contains('Software engineering');
+    cy.get('.mat-option-text').click();
+    // cy.wait(1000);
+    // cy.get('.register-form').get('chip-input').contains('Software engineering');
 
     cy.get('.register-form').find('textarea[name="bio"]').type('Good Game').should('have.value', 'Good Game');
 
@@ -59,10 +60,11 @@ describe('Register', function () {
     cy.get('.register-form').find('input[name="major"]').type('CE').should('have.value', 'CE');
     cy.get('.register-form').find('input[name="level"]').type('MS').should('have.value', 'MS');
 
-    cy.get('.register-form').get('input[aria-label="Enter your interests"]').type('software');
+    cy.get('.register-form').get('.mat-chip-input').type('software');
     cy.wait(1000);
-    cy.get('ng2-dropdown-menu').get('ng2-menu-item:first').get('div[role="button"]').click();
-    cy.get('.register-form').get('tag-input').get('div[title="Software engineering"]').contains('Software engineering');
+    cy.get('.mat-option-text').click();
+    // cy.wait(1000);
+    // cy.get('.register-form').get('chip-input').contains('Software engineering');
 
     cy.get('.register-form').find('textarea[name="bio"]').type('Good Game').should('have.value', 'Good Game');
 

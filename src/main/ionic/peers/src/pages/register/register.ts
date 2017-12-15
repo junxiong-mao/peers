@@ -1,32 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, IonicPage, NavController } from 'ionic-angular';
 import { AuthService } from '../../services/auth/auth-service';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from "@angular/common/http";
+import { AppState } from "../../states/app-state";
 
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
 })
-export class RegisterPage {
+export class RegisterPage implements OnInit {
   createSuccess = false;
-  registerCredentials = { email: '', password: '', confirm_password: '', firstName: '', lastName: '', major: '', level: '', bio: '', interests: [], };
+  registerCredentials = {
+    email: '',
+    password: '',
+    confirm_password: '',
+    firstName: '',
+    lastName: '',
+    major: '',
+    level: '',
+    bio: '',
+    interests: [],
+  };
 
-  interestsList;
+  interestsList = [];
 
-  // bio: max length 500 chars
-  // interests: "A_B_C"
-  // except for email, all other attributes must be prefixed with "custom:"
-
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private http: HttpClient) { }
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private http: HttpClient, private appState: AppState) {
+  }
 
   ngOnInit(): void {
     const url = `${location.origin}/assets/academic-interests.json`;
-    this.interestsList = this.http.get(url);
+    this.http.get(url).subscribe((l: Array<string>) => this.interestsList = l);
   }
 
   public register() {
-    if(this.registerCredentials.password != this.registerCredentials.confirm_password){
+    if (this.registerCredentials.password != this.registerCredentials.confirm_password) {
       this.showPopup("Error", "Passwords must be the same.");
     } else {
 
@@ -62,8 +69,11 @@ export class RegisterPage {
     alert.present();
   }
 
-  public requestAutocompleteItems = (text: string) : Observable<Response> => {
-    return this.interestsList;
+  handleIllegalInterestInput(message: string) {
+    this.appState.handleError('Tried to add non existing interest', message);
   }
 
+  handleInterestsValueChange(interests: Array<string>) {
+    this.registerCredentials.interests = interests;
+  }
 }

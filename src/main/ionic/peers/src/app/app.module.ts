@@ -27,8 +27,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { ENV } from "@app/env";
 import {UserState} from "../states/user-state";
 
-import { TagInputModule } from 'ng2-tag-input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatAutocompleteModule, MatChipsModule, MatFormFieldModule, MatIconModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -45,8 +45,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     SwingModule,
     IonicImageViewerModule,
     HttpClientModule,
-    TagInputModule,
     BrowserAnimationsModule,
+    MatIconModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -2,6 +2,7 @@ describe('Home Page', function () {
   beforeEach(function () {
     cy.resetScenariosToDefaults();
     cy.visit('http://localhost:8100')
+    cy.wait(500);
   });
 
   after(function () {
@@ -12,6 +13,7 @@ describe('Home Page', function () {
     //Given
 
     //When
+    cy.wait(500);
 
     //Then
     cy.get('.toolbar-title')

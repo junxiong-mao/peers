@@ -66,13 +66,7 @@
         <ion-col class="signup-col" col-md-6 offset-md-3>
           <h2>Interests</h2>
           <ion-item>
-            <tag-input data-test="interests"
-                       name="interests"
-                       secondaryPlaceholder = "Enter your interests"
-                       [(ngModel)]='registerCredentials.interests' required
-                       [onlyFromAutocomplete]="true">
-              <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems"></tag-input-dropdown>
-            </tag-input>
+            <chip-input [options]="interestsList" (onIllegalInput)="handleIllegalInterestInput($event)" (onValueChange)="handleInterestsValueChange($event)"></chip-input>
           </ion-item>
         </ion-col>
       </ion-row>
