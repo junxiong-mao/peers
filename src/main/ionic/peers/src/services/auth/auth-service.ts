@@ -136,7 +136,7 @@ export class AuthService {
     };
     let dataInterests = {
       Name: 'custom:interests',
-      Value: credentials.interests.map(o => o.value).join('_')
+      Value: credentials.interests.join('_')
     };
 
     let attributeEmail = new AWSCognito.CognitoUserAttribute(dataEmail);

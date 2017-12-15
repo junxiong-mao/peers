@@ -37,13 +37,9 @@ export class RegisterPage implements OnInit {
       this.showPopup("Error", "Passwords must be the same.");
     } else {
 
-      this.auth.register(this.registerCredentials).subscribe(success => {
-          if (success) {
-            this.createSuccess = true;
-            this.showPopup("Success", "Account created.");
-          } else {
-            this.showPopup("Error", "Problem creating account.");
-          }
+      this.auth.register(this.registerCredentials).subscribe(data => {
+          this.createSuccess = true;
+          this.showPopup("Success", "Account created.");
         },
         error => {
           this.showPopup("Error", error);

@@ -69,7 +69,7 @@ import { MatAutocompleteModule, MatChipsModule, MatFormFieldModule, MatIconModul
     CardsService,
     UserState,
     {provide: AuthService, useClass: ENV.auth},
-    //AuthService
+    // AuthService
   ]
 })
 export class AppModule {
